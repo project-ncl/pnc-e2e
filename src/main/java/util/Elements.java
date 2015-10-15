@@ -77,4 +77,14 @@ public class Elements {
     public static final String BUILDS_LINK = "Builds";
     public static final String BUILD_RECORD_LINK = "Builds Records";
     public static final String BUILD_CONFIGURATION_SET_RECORDS_LINK = "Build Configuration Set Records";
+
+    public static final String IMPORT_LINK = "Import";
+    public static final String IMPORT_PRODUCT_LINK = "Product";
+
+    public static final String IMPORT_NAME = "input1";
+    public static final String IMPORT_VERSION = "input11";
+    public static final String IMPORT_URL = "input2";
+    public static final String IMPORT_REVISION = "input3";
+    public static final String IMPORT_POM = "input4";
+
 }

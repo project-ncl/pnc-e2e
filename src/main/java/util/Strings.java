@@ -25,4 +25,7 @@ public class Strings {
     public static final String RELEASE_DATE = "1994/10/05";
     public static final String RELEASE_URL = "http://test";
 
+    public static final String IMPORT_VERSION = "16.16";
+    public static final String IMPORT_URL = "https://github.com/emmettu/smokes.git";
+
 }
