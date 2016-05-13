@@ -38,6 +38,7 @@ public class Elements {
     public static final String CONFIGURATION_LINK = "Build Configs";
     public static final String BUILD_CONFIGURATION_LINK = "Build Configs";
     public static final String CREATE_CONFIGURATION_BUTTON = "Create Build Config";
+    public static final String BUILD_CONFIGURATION_PROJECT_SELECT = "projectId";
     public static final String BUILD_CONFIGURATION_INPUT = "name";
     public static final String BUILD_CONFIGURATION_DESCRIPTION = "description";
     public static final String BUILD_CONFIGURATION_SCM_URL = "scmRepoURL";
