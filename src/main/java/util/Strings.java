@@ -11,10 +11,10 @@ public class Strings {
     public static final String PROJECT_DESCRIPTION = "test description";
     public static final String PROJECT_URL = "http://test";
     public static final String PROJECT_ISSUE_URL = "http://test";
-
-    public static final String BUILD_CONFIGURATION_DESCRIPTION = "test description";
-    public static final String BUILD_CONFIGURATION_SCM_URL = "http://test";
-    public static final String BUILD_CONFIGURATION_SCM_REVISION = "scm test";
+    
+    public static final String BUILD_CONFIGURATION_DESCRIPTION = "pnc-web-test description";
+    public static final String BUILD_CONFIGURATION_SCM_URL = "https://github.com/project-ncl/pnc-simple-test-project.git";
+    public static final String BUILD_CONFIGURATION_SCM_REVISION = "1.0";
     public static final String BUILD_CONFIGURATION_BUILD_SCRIPT = "mvn clean deploy";
     public static final String BUILD_CONFIGURATION_ENVIRONMENT = "Demo Environment 1";
     public static final String BUILD_CONFIGURATION_VERSION = "1.9";
