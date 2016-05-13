@@ -13,12 +13,11 @@ import java.util.concurrent.TimeUnit;
 public class SetUpOperator extends Operator {
 
     private Credentials creds = new Credentials();
-    private static final int LOAD_WAIT_TIME = 5;
+    private static final int LOAD_WAIT_TIME = 10;
 
     public void setUp() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(LOAD_WAIT_TIME, TimeUnit.SECONDS);
-        driver.manage().window().setSize(new Dimension(1024, 768));
         loginOrGoToBaseURL();
     }
 
