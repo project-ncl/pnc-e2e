@@ -18,6 +18,7 @@ public class SetUpOperator extends Operator {
     public void setUp() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(LOAD_WAIT_TIME, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         loginOrGoToBaseURL();
     }
 
