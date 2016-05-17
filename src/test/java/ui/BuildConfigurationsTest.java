@@ -39,36 +39,30 @@ public class BuildConfigurationsTest extends UITest {
 
     @Test
     public void configurationExists() {
-        tester.clickLink(Elements.CONFIGURATION_LINK);
-        tester.clickLink(Elements.BUILD_CONFIGURATION_LINK);
+        tester.menuBuildConfigs();
         assertLinkExists(configurationName);
     }
 
     @Test
     public void cloneConfiguration() {
-        tester.clickLink(Elements.CONFIGURATION_LINK);
-        tester.clickLink(Elements.BUILD_CONFIGURATION_LINK);
+        tester.menuBuildConfigs();
         tester.clickLink(configurationName);
 
         tester.clickButton(Elements.BUILD_CONFIGURATION_CLONE_BUTTON);
 
-        tester.clickLink(Elements.CONFIGURATION_LINK);
-        tester.clickLink(Elements.BUILD_CONFIGURATION_LINK);
+        tester.menuBuildConfigs();
         assertCloneExists(configurationName);
     }
 
     @Test
     public void deleteConfiguration() {
-        tester.clickLink(Elements.CONFIGURATION_LINK);
-        tester.clickLink(Elements.BUILD_CONFIGURATION_LINK);
+        tester.menuBuildConfigs();
         tester.clickLink(configurationName);
 
         tester.clickButton(Elements.BUILD_CONFIGURATION_DELETE_BUTTON);
         new ConfirmOperator().confirm();
 
-        tester.clickLink(Elements.CONFIGURATION_LINK);
-        tester.clickLink(Elements.BUILD_CONFIGURATION_LINK);
+        tester.menuBuildConfigs();
         assertLinkDoesNotExists(configurationName);
     }
-
 }

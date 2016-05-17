@@ -36,10 +36,4 @@ public class BuildConfigurationPageOperator extends Operator {
         new LinkOperator(name).clickLink();
         new BuildOperator().startBuild();
     }
-
-    public void menuBuildBuild() {
-
-        new LinkOperator(Elements.BUILDS_LINK).clickLink();
-        new LinkOperator(Elements.BUILD_RECORD_LINK).findLink(1).click();
-    }
 }

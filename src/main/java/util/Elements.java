@@ -46,7 +46,7 @@ public class Elements {
     public static final String BUILD_CONFIGURATION_BUILD_SCRIPT = "buildScript";
     public static final String BUILD_CONFIGURATION_PRODUCT = "createCtrl.products.selected";
     public static final String BUILD_CONFIGURATION_ENVIRONMENT ="environmentId";
-    public static final String BUILD_CONFIGURATION_CLONE_BUTTON ="Clone Configuration";
+    public static final String BUILD_CONFIGURATION_CLONE_BUTTON ="Clone Build Config";
     public static final String BUILD_CONFIGURATION_DELETE_BUTTON ="Delete Configuration";
 
     public static final String BUILD_CONFIGURATION_NAME_P = "input-name";

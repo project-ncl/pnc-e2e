@@ -18,7 +18,7 @@ public class UITester {
     public void clickLink(String linkText) {
         new LinkOperator(linkText).clickLink();
     }
-
+    
     public void clickButton(String buttonName) {
         new ButtonOperator(buttonName).clickButton();
     }
@@ -75,4 +75,15 @@ public class UITester {
         return Operator.getDriver();
     }
 
+    public void menuBuilds() {
+
+        new LinkOperator(Elements.BUILDS_LINK).clickLink();
+        new LinkOperator(Elements.BUILD_RECORD_LINK).findLink(1).click();
+    }
+
+    public void menuBuildConfigs() {
+
+        new LinkOperator(Elements.CONFIGURATION_LINK).clickLink();
+        new LinkOperator(Elements.BUILD_CONFIGURATION_LINK).findLink(1).click();
+    }
 }

@@ -70,7 +70,7 @@ public class UITest {
             tester.getDriver().findElement(By.linkText(cloneName)).isDisplayed();
         }
         catch (NoSuchElementException e) {
-            throw new AssertionFailedError("Cloned coniguration" + configurationName + " does not exist when it should");
+            throw new AssertionFailedError("Cloned configuration " + cloneName + " does not exist when it should");
         }
     }
 
