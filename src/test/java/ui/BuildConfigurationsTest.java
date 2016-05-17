@@ -5,7 +5,6 @@ import operators.configurations.BuildConfigurationPageOperator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Keys;
 import util.Elements;
 import util.RandomName;
 import util.Strings;
@@ -26,15 +25,15 @@ public class BuildConfigurationsTest extends UITest {
 
     @Test
     public void buildConfigurationInfoCorrect(){
-        String configurationName = tester.getParagraphText(Elements.BUILD_CONFIGURATION_NAME_P);
+        String gotConfigurationName = tester.getParagraphText(Elements.BUILD_CONFIGURATION_NAME_P);
         String configurationDescription = tester.getParagraphText(Elements.BUILD_CONFIGURATION_DESCRIPTION_P);
         String SCMUrl = tester.getParagraphText(Elements.BUILD_CONFIGURATION_SCM_URL_P);
         String SCMRevision = tester.getParagraphText(Elements.BUILD_CONFIGURATION_SCM_REVISION_P);
 
-        Assert.assertEquals(configurationName, configurationName);
-        Assert.assertEquals(configurationDescription, Strings.BUILD_CONFIGURATION_DESCRIPTION);
-        Assert.assertEquals(SCMUrl, Strings.BUILD_CONFIGURATION_SCM_URL);
-        Assert.assertEquals(SCMRevision, Strings.BUILD_CONFIGURATION_SCM_REVISION);
+        Assert.assertEquals(gotConfigurationName, configurationName);
+        Assert.assertEquals(Strings.BUILD_CONFIGURATION_DESCRIPTION, configurationDescription);
+        Assert.assertEquals(Strings.BUILD_CONFIGURATION_SCM_URL, SCMUrl);
+        Assert.assertEquals(Strings.BUILD_CONFIGURATION_SCM_REVISION, SCMRevision);
     }
 
 
