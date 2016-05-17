@@ -20,14 +20,14 @@ public class SelectOperator extends Operator {
         String selectXpath = String.format(XPATH_SELECT, name);
         WebElement element = getElementByXpath(selectXpath);
         element.click();
-        element.findElements(By.tagName("li")).get(3).click();
+        element.findElements(By.tagName("li")).get(value).click();
     }
 
     public void clickFirstNonEmptySelect() {
         String selectXpath = String.format(XPATH_SELECT, name);
         WebElement element = getElementByXpath(selectXpath);
         element.click();
-        element.findElements(By.tagName("li")).get(1).click();
+        element.findElements(By.tagName("li")).get(0).click();
     }
 
 }

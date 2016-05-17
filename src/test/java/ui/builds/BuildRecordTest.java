@@ -17,8 +17,7 @@ public class BuildRecordTest extends UITest {
         BuildConfigurationPageOperator operator = new BuildConfigurationPageOperator(configurationName);
         operator.createBuildConfiguration();
         operator.buildBuildConfiguration();
-        tester.clickLink(Elements.BUILDS_LINK);
-        tester.clickLink(Elements.BUILD_RECORD_LINK);
+        operator.menuBuildBuild();
         assertLinkExists(configurationName);
     }
 

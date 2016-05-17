@@ -77,7 +77,7 @@ public class Elements {
     public static final String RELEASE_ISSUE_URL = "issuetrackerurl";
 
     public static final String BUILDS_LINK = "Builds";
-    public static final String BUILD_RECORD_LINK = "Builds Records";
+    public static final String BUILD_RECORD_LINK = "Builds";
     public static final String BUILD_CONFIGURATION_SET_RECORDS_LINK = "Build Groups";
 
 }
