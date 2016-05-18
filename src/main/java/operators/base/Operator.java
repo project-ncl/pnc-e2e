@@ -41,4 +41,12 @@ public abstract class Operator {
         }
     }
 
+    public WebElement getElementByPartialLinkText(String linkText, int n) {
+        try {
+            return driver.findElements(By.partialLinkText(linkText)).get(n);
+        }
+        catch(NoSuchElementException e) {
+            throw new AssertionError("Failed to find link: "+linkText);
+        }
+    }
 }

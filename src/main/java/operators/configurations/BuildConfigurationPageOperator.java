@@ -16,8 +16,7 @@ public class BuildConfigurationPageOperator extends Operator {
     }
 
     public void createBuildConfiguration() {
-        new LinkOperator(Elements.CONFIGURATION_LINK).clickLink();
-        new LinkOperator(Elements.BUILD_CONFIGURATION_LINK).findLink(1).click(); //second link must be clicked since they have the same name.
+        new MenuOperator().buildConfigs();
         new ButtonOperator(Elements.CREATE_CONFIGURATION_BUTTON).clickButton();
         new SelectOperator(Elements.BUILD_CONFIGURATION_PROJECT_SELECT).clickSelect(0);
         new TextInputOperator(Elements.BUILD_CONFIGURATION_INPUT).insertInput(name);
@@ -31,8 +30,8 @@ public class BuildConfigurationPageOperator extends Operator {
     }
 
     public void buildBuildConfiguration() {
-        new LinkOperator(Elements.CONFIGURATION_LINK).clickLink();
-        new LinkOperator(Elements.BUILD_CONFIGURATION_LINK).findLink(1).click();
+        new MenuOperator().buildConfigs();
+        new RefreshOperator().refresh();
         new LinkOperator(name).clickLink();
         new BuildOperator().startBuild();
     }

@@ -29,4 +29,7 @@ public class LinkOperator extends Operator {
         return getElementByLinkText(name, n);
     }
 
+    public void clickPartialLink() {
+        getElementByPartialLinkText(name, 0).click();
+    }
 }

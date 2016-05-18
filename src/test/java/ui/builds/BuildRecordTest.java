@@ -1,7 +1,9 @@
 package ui.builds;
 
-import operators.configurations.BuildConfigurationPageOperator;
+import operators.base.LinkOperator;
 import operators.base.MenuOperator;
+import operators.base.RefreshOperator;
+import operators.configurations.BuildConfigurationPageOperator;
 import org.junit.Test;
 import ui.UITest;
 import util.RandomName;
@@ -18,7 +20,9 @@ public class BuildRecordTest extends UITest {
         operator.createBuildConfiguration();
         operator.buildBuildConfiguration();
         new MenuOperator().builds();
-        assertLinkExists(configurationName);
+        new RefreshOperator().refresh();
+        new LinkOperator("# ").clickPartialLink();
+        assertTextExists(configurationName);
     }
 
 }

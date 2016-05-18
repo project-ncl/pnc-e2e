@@ -74,5 +74,15 @@ public class UITest {
         }
     }
 
+    public void assertTextExists(String recordName) {
+
+        try {
+            String h1Text = tester.getDriver().findElement(By.xpath("//h1[@class='ng-binding']")).getText();
+            Assert.assertTrue(h1Text.contains(recordName));
+        }
+        catch (NoSuchElementException e) {
+            throw new AssertionFailedError("Build " + recordName + " does not exist when it should");
+        }
+    }
 }
 

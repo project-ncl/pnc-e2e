@@ -9,6 +9,6 @@ public class RandomName {
 
     public static String getRandomName() {
         int largeRandomNumber = new Random().nextInt();
-        return "pncwebtest" + largeRandomNumber;
+        return "pncweb" + largeRandomNumber;
     }
 }
