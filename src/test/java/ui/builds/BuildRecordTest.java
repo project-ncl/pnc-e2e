@@ -1,9 +1,9 @@
 package ui.builds;
 
 import operators.configurations.BuildConfigurationPageOperator;
+import operators.base.MenuOperator;
 import org.junit.Test;
 import ui.UITest;
-import util.Elements;
 import util.RandomName;
 
 /**
@@ -17,7 +17,7 @@ public class BuildRecordTest extends UITest {
         BuildConfigurationPageOperator operator = new BuildConfigurationPageOperator(configurationName);
         operator.createBuildConfiguration();
         operator.buildBuildConfiguration();
-        tester.menuBuilds();
+        new MenuOperator().builds();
         assertLinkExists(configurationName);
     }
 

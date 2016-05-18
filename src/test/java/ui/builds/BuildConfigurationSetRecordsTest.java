@@ -1,10 +1,10 @@
 package ui.builds;
 
+import operators.base.MenuOperator;
 import operators.base.RefreshOperator;
 import operators.configurations.BuildConfigurationSetPageOperator;
 import org.junit.Test;
 import ui.UITest;
-import util.Elements;
 import util.RandomName;
 
 /**
@@ -18,8 +18,7 @@ public class BuildConfigurationSetRecordsTest extends UITest {
         BuildConfigurationSetPageOperator operator = new BuildConfigurationSetPageOperator(configurationName);
         operator.createBuildConfigurationSet();
         operator.buildBuildConfigurationSet();
-        tester.clickLink(Elements.BUILDS_LINK);
-        tester.clickLink(Elements.BUILD_CONFIGURATION_SET_RECORDS_LINK);
+        new MenuOperator().builds();
         new RefreshOperator().refresh();
         assertLinkExists(configurationName);
     }
