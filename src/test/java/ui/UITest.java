@@ -67,7 +67,7 @@ public class UITest {
     public void assertCloneExists(String configurationName) {
         String cloneName = "_" + configurationName;
         try {
-            tester.getDriver().findElement(By.linkText(cloneName)).isDisplayed();
+            tester.getDriver().findElement(By.partialLinkText(cloneName)).isDisplayed();
         }
         catch (NoSuchElementException e) {
             throw new AssertionFailedError("Cloned configuration " + cloneName + " does not exist when it should");
