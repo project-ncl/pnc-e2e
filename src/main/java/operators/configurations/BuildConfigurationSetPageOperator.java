@@ -13,24 +13,24 @@ public class BuildConfigurationSetPageOperator extends Operator {
     }
 
     public void createBuildConfigurationSet() {
-        new LinkOperator(Elements.CONFIGURATION_LINK).clickLink();
-        new LinkOperator(Elements.BUILD_CONFIGURATION_SET_LINK).clickLink();
+
+        new MenuOperator().buildGroupConfigs();
         new ButtonOperator(Elements.CREATE_CONFIGURATION_SET_BUTTON).clickButton();
         new TextInputOperator(Elements.BUILD_CONFIGURATION_SET_INPUT).insertInput(name);
         new SubmitOperator().submit();
     }
 
     public void buildBuildConfigurationSet() {
-        new LinkOperator(Elements.CONFIGURATION_LINK).clickLink();
-        new LinkOperator(Elements.BUILD_CONFIGURATION_SET_LINK).clickLink();
+
+        new MenuOperator().buildGroupConfigs();
         new RefreshOperator().refresh();
         new LinkOperator(name).clickLink();
         new BuildOperator().startBuild();
     }
 
     public void addBuildConfiguration() {
-        new LinkOperator(Elements.CONFIGURATION_LINK).clickLink();
-        new LinkOperator(Elements.BUILD_CONFIGURATION_SET_LINK).clickLink();
+
+        new MenuOperator().buildGroupConfigs();
         new LinkOperator(name).clickLink();
         new ButtonOperator(Elements.ADD_BUILD_CONFIGURATION_BUTTON).clickButton();
         new SelectOperator(Elements.ADD_BUILD_CONFIGURATION_SELECT).clickFirstNonEmptySelect();

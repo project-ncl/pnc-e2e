@@ -9,12 +9,12 @@ import org.openqa.selenium.interactions.Actions;
  */
 public class BuildOperator extends Operator {
     public void startBuild() {
-        // Alternative locator By.xpath("//button[contains(@ng-click, 'build()')]")
-        WebElement startButton = driver.findElement(By.xpath("//span[text() = 'Build'] "));
+        // Alternative locator By.xpath("//span[text() = 'Build']")
+        WebElement startButton = driver.findElement(By.xpath("//button[contains(@ng-click, 'build()')]"));
         Actions action = new Actions(driver);
         action.moveToElement(startButton).build().perform();
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
         } catch (Exception e) {
         }
         startButton.click();

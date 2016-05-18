@@ -22,4 +22,10 @@ public class MenuOperator extends Operator {
         new LinkOperator(Elements.CONFIGURATION_LINK).clickLink();
         new LinkOperator(Elements.BUILD_CONFIGURATION_LINK).findLink(1).click();
     }
+
+    public void buildGroupConfigs() {
+
+        new LinkOperator(Elements.CONFIGURATION_LINK).clickLink();
+        new LinkOperator(Elements.BUILD_CONFIGURATION_SET_LINK).clickLink();
+    }
 }
