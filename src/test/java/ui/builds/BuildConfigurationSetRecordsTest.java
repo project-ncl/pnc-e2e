@@ -18,7 +18,7 @@ public class BuildConfigurationSetRecordsTest extends UITest {
         BuildConfigurationSetPageOperator operator = new BuildConfigurationSetPageOperator(configurationName);
         operator.createBuildConfigurationSet();
         operator.buildBuildConfigurationSet();
-        new MenuOperator().builds();
+        new MenuOperator().buildGroups();
         new RefreshOperator().refresh();
         assertLinkExists(configurationName);
     }

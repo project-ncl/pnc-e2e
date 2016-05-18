@@ -17,6 +17,12 @@ public class MenuOperator extends Operator {
         new LinkOperator(Elements.BUILD_RECORD_LINK).findLink(1).click();
     }
 
+    public void buildGroups() {
+
+        new LinkOperator(Elements.BUILDS_LINK).clickLink();
+        new LinkOperator(Elements.BUILD_CONFIGURATION_SET_RECORDS_LINK).clickLink();
+    }
+    
     public void buildConfigs() {
 
         new LinkOperator(Elements.CONFIGURATION_LINK).clickLink();
