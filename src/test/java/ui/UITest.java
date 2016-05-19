@@ -35,7 +35,7 @@ public class UITest {
 
     public void assertLinkExists(String linkName) {
         try {
-            tester.getDriver().findElement(By.linkText(linkName)).isEnabled();
+            tester.getDriver().findElement(By.linkText(linkName)).isDisplayed();
         }
         catch (NoSuchElementException e) {
             throw new AssertionFailedError("link " + linkName + " does not exist when it should");
