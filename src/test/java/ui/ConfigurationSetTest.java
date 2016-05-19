@@ -5,6 +5,7 @@ import operators.base.ParagraphOperator;
 import operators.configurations.BuildConfigurationSetPageOperator;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.Ignore;
 import util.Elements;
 import util.RandomName;
 
@@ -33,6 +34,7 @@ public class ConfigurationSetTest extends UITest {
         Assert.assertEquals(pageText, configurationSetName);
     }
 
+    @Ignore("'Delete Set' button is not implemented")
     @Test
     public void deleteConfigurationSet() {
         configurationSetName = RandomName.getRandomName();
