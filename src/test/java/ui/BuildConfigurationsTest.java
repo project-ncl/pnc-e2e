@@ -6,6 +6,7 @@ import operators.configurations.BuildConfigurationPageOperator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Ignore;
 import util.Elements;
 import util.RandomName;
 import util.Strings;
@@ -55,6 +56,7 @@ public class BuildConfigurationsTest extends UITest {
         assertCloneExists(configurationName);
     }
 
+    @Ignore("'Delete Configuration' button is not implemented")
     @Test
     public void deleteConfiguration() {
         new MenuOperator().buildConfigs();
