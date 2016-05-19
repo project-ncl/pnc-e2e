@@ -5,14 +5,14 @@ package util;
  */
 public class Strings {
 
-    public static final String PRODUCT_DESCRIPTION = "test description";
+    public static final String PRODUCT_DESCRIPTION = "pncweb product";
     public static final String PRODUCT_VERSION = "1.9";
 
-    public static final String PROJECT_DESCRIPTION = "test description";
+    public static final String PROJECT_DESCRIPTION = "pncweb project";
     public static final String PROJECT_URL = "http://test";
     public static final String PROJECT_ISSUE_URL = "http://test";
     
-    public static final String BUILD_CONFIGURATION_DESCRIPTION = "pnc-web-test description";
+    public static final String BUILD_CONFIGURATION_DESCRIPTION = "pncweb build config";
     public static final String BUILD_CONFIGURATION_SCM_URL = "https://github.com/project-ncl/pnc-simple-test-project.git";
     public static final String BUILD_CONFIGURATION_SCM_REVISION = "1.0";
     public static final String BUILD_CONFIGURATION_BUILD_SCRIPT = "mvn clean deploy";

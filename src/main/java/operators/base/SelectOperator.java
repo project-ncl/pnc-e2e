@@ -1,6 +1,5 @@
 package operators.base;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -10,24 +9,31 @@ import org.openqa.selenium.support.ui.Select;
  */
 public class SelectOperator extends Operator {
 
-    public final String XPATH_SELECT = "//div[input[@name='%s']]";
-
     public SelectOperator(String ngModel) {
         super(ngModel);
     }
 
     public void clickSelect(int value) {
-        String selectXpath = String.format(XPATH_SELECT, name);
+        String selectXpath = String.format("//select[@ng-model='%s']", name);
         WebElement element = getElementByXpath(selectXpath);
         element.click();
-        element.findElements(By.tagName("li")).get(value).click();
+        for (int i = 0; i < value; i++) {
+            element.sendKeys(Keys.ARROW_DOWN);
+        }
+        element.sendKeys(Keys.ENTER);
     }
 
     public void clickFirstNonEmptySelect() {
-        String selectXpath = String.format(XPATH_SELECT, name);
+        String selectXpath = String.format("//select[@ng-model='%s']", name);
         WebElement element = getElementByXpath(selectXpath);
         element.click();
-        element.findElements(By.tagName("li")).get(0).click();
-    }
+        Select select = new Select(element);
+        String text = select.getFirstSelectedOption().getText();
 
+        while(text.trim().length() <= 0) {
+            element.sendKeys(Keys.ARROW_DOWN);
+            text = select.getFirstSelectedOption().getText();
+        }
+        element.sendKeys(Keys.ENTER);
+    }
 }

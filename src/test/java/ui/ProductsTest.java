@@ -36,7 +36,7 @@ public class ProductsTest extends UITest {
         String systemName = tester.getParagraphText(Elements.SYSTEM_NAME_PARAGRAPH);
 
         Assert.assertEquals(productName, actualName);
-        Assert.assertEquals(productDescription, Strings.PRODUCT_DESCRIPTION);
+        Assert.assertEquals(Strings.PRODUCT_DESCRIPTION, productDescription);
         Assert.assertEquals(productAbbreviation, productName);
         Assert.assertEquals(productCode, productName);
         Assert.assertEquals(systemName, productName);
