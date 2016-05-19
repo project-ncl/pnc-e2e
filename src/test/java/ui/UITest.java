@@ -1,5 +1,7 @@
 package ui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import junit.framework.AssertionFailedError;
 import org.junit.After;
 import org.junit.Assert;
@@ -34,11 +36,16 @@ public class UITest {
     }
 
     public void assertLinkExists(String linkName) {
+
         try {
+            Thread.sleep(5000);
             tester.getDriver().findElement(By.linkText(linkName)).isDisplayed();
         }
         catch (NoSuchElementException e) {
             throw new AssertionFailedError("link " + linkName + " does not exist when it should");
+        }
+        catch (InterruptedException e) {
+            Logger.getLogger(UITest.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
