@@ -33,7 +33,7 @@ public class ProjectsTest extends UITest {
         String projectIssueUrl = tester.getParagraphText(Elements.PROJECT_ISSUE_URL_PARAGRAPH);
 
         Assert.assertEquals(projectName, actualName);
-        Assert.assertEquals(Strings.PRODUCT_DESCRIPTION, projectDescription);
+        Assert.assertEquals(Strings.PROJECT_DESCRIPTION, projectDescription);
         Assert.assertEquals(Strings.PROJECT_URL, projectUrl);
         Assert.assertEquals(Strings.PROJECT_ISSUE_URL, projectIssueUrl);
     }

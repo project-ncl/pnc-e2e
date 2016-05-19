@@ -21,7 +21,7 @@ public class TextInputDropdownOperator extends Operator {
         element.findElements(By.tagName("li")).get(value).click();
     }
 
-    public void clickFirstSelect() {
+    public void clickFirst() {
         String selectXpath = String.format(XPATH_SELECT, name);
         WebElement element = getElementByXpath(selectXpath);
         element.click();

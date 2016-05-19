@@ -57,7 +57,7 @@ public class Elements {
     public static final String CREATE_CONFIGURATION_SET_BUTTON = "Create Build Group Config";
     public static final String BUILD_CONFIGURATION_SET_INPUT = "name";
     public static final String BUILD_CONFIGURATION_SCM_REVISION_P = "input-scm-revision";
-    public static final String ADD_BUILD_CONFIGURATION_BUTTON ="Add an existing Build Configuration";
+    public static final String ADD_BUILD_CONFIGURATION_BUTTON ="Add an existing Build Config";
     public static final String ADD_BUILD_CONFIGURATION_SELECT ="addConfigurationSetCtrl.data.selectedProjectId";
     public static final String BUILD_CONFIGURATION_SET_NAME_P ="input-name";
     public static final String BUILD_CONFIGURATION_SET_DELETE_BUTTON ="Delete Set";
