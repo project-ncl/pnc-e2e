@@ -23,7 +23,7 @@ public class SingleSignOn extends UITest {
     public static void before() throws Exception {
 
         sufix = RandomName.getSufix();
-        buildName = "rh-sso-1.9.x-redhat" + sufix;
+        buildName = "rh-sso-1.9.x" + sufix;
     }
     
     @Before
