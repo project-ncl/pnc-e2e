@@ -23,4 +23,26 @@ public class ProjectPageOperator extends Operator {
         new TextInputOperator(Elements.PROJECT_ISSUE_URL).insertInput(Strings.PROJECT_ISSUE_URL);
         new SubmitOperator().submit();
     }
+
+    public void menuProjectsMetadata() {
+
+        new LinkOperator(Elements.BUILD_CONFIGURATION_LINK).clickLink();
+        new LinkOperator(Elements.PROJECT_LINK).clickAndRefresh();
+    }
+
+    public void createProjectMetadata() {
+
+        menuProjectsMetadata();
+        new ButtonOperator(Elements.CREATE_PROJECT_BUTTON).clickButton();
+    }
+
+    public void setName() {
+
+        new TextInputOperator(Elements.PROJECT_NAME).insertInput(name);
+    }
+
+    public void submit() {
+
+        new SubmitOperator().submit();
+    }
 }

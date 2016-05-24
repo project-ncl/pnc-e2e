@@ -1,7 +1,6 @@
 package ui;
 
 import operators.base.ConfirmOperator;
-import operators.base.MenuOperator;
 import operators.configurations.BuildConfigurationPageOperator;
 import org.junit.Assert;
 import org.junit.Before;
@@ -41,31 +40,31 @@ public class BuildConfigurationsTest extends UITest {
 
     @Test
     public void configurationExists() {
-        new MenuOperator().buildConfigs();
+        new BuildConfigurationPageOperator().menuBuildConfigs();
         assertLinkExists(configurationName);
     }
 
     @Test
     public void cloneConfiguration() {
-        new MenuOperator().buildConfigs();
+        new BuildConfigurationPageOperator().menuBuildConfigs();
         tester.clickLink(configurationName);
 
         tester.clickButton(Elements.BUILD_CONFIGURATION_CLONE_BUTTON);
 
-        new MenuOperator().buildConfigs();
+        new BuildConfigurationPageOperator().menuBuildConfigs();
         assertCloneExists(configurationName);
     }
 
     @Ignore("'Delete Configuration' button is not implemented")
     @Test
     public void deleteConfiguration() {
-        new MenuOperator().buildConfigs();
+        new BuildConfigurationPageOperator().menuBuildConfigs();
         tester.clickLink(configurationName);
 
         tester.clickButton(Elements.BUILD_CONFIGURATION_DELETE_BUTTON);
         new ConfirmOperator().confirm();
 
-        new MenuOperator().buildConfigs();
+        new BuildConfigurationPageOperator().menuBuildConfigs();
         assertLinkDoesNotExists(configurationName);
     }
 }

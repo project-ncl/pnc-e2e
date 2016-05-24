@@ -11,10 +11,13 @@ public class BuildConfigurationSetPageOperator extends Operator {
     public BuildConfigurationSetPageOperator(String name) {
         super(name);
     }
+    
+    public BuildConfigurationSetPageOperator() {
+    }
 
     public void createBuildConfigurationSet() {
 
-        new MenuOperator().buildGroupConfigs();
+        menuBuildGroupConfigs();
         new ButtonOperator(Elements.CREATE_CONFIGURATION_SET_BUTTON).clickButton();
         new TextInputOperator(Elements.BUILD_CONFIGURATION_SET_INPUT).insertInput(name);
         new SubmitOperator().submit();
@@ -22,7 +25,7 @@ public class BuildConfigurationSetPageOperator extends Operator {
 
     public void buildBuildConfigurationSet() {
 
-        new MenuOperator().buildGroupConfigs();
+        menuBuildGroupConfigs();
         new RefreshOperator().refresh();
         new LinkOperator(name).clickLink();
         new BuildOperator().startBuild();
@@ -30,7 +33,7 @@ public class BuildConfigurationSetPageOperator extends Operator {
 
     public void addBuildConfiguration() {
 
-        new MenuOperator().buildGroupConfigs();
+        menuBuildGroupConfigs();
         new LinkOperator(name).clickLink();
         new ButtonOperator(Elements.ADD_BUILD_CONFIGURATION_BUTTON).clickButton();
         new SelectOperator(Elements.ADD_BUILD_CONFIGURATION_SELECT).clickFirstNonEmptySelect();
@@ -38,4 +41,30 @@ public class BuildConfigurationSetPageOperator extends Operator {
         new SubmitOperator().submit();
     }
 
+    public void menuBuildGroupConfigs() {
+
+        new LinkOperator(Elements.CONFIGURATION_LINK).clickLink();
+        new LinkOperator(Elements.BUILD_CONFIGURATION_SET_LINK).clickLink();
+    }
+
+    public void menuBuildGroups() {
+
+        new LinkOperator(Elements.BUILDS_LINK).clickLink();
+        new LinkOperator(Elements.BUILD_CONFIGURATION_SET_RECORDS_LINK).clickLink();
+    }
+
+    public void createBuildGroupConfig() {
+
+        menuBuildGroupConfigs();
+        new ButtonOperator(Elements.CREATE_CONFIGURATION_SET_BUTTON).clickButton();
+    }
+
+    public void setName() {
+        
+        new TextInputOperator(Elements.BUILD_CONFIGURATION_SET_INPUT).insertInput(name);
+    }
+
+    public void submit() {
+        new SubmitOperator().submit();
+    }
 }
