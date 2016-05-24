@@ -52,6 +52,10 @@ public class BuildConfigurationPageOperator extends Operator {
     public void createBuildConfig() {
 
         menuBuildConfigs();
+        try {
+            Thread.sleep(5000);
+        } catch (Exception e) {
+        }
         new ButtonOperator(Elements.CREATE_CONFIGURATION_BUTTON).clickButton();
     }
 
@@ -61,6 +65,10 @@ public class BuildConfigurationPageOperator extends Operator {
     }
 
     public void setName(String name) {
+        new TextInputOperator(Elements.BUILD_CONFIGURATION_INPUT).insertInput(name);
+    }
+
+    public void setName() {
         new TextInputOperator(Elements.BUILD_CONFIGURATION_INPUT).insertInput(name);
     }
 
@@ -74,6 +82,10 @@ public class BuildConfigurationPageOperator extends Operator {
 
     public void setBuildScript(String buildScript) {
         new AreaTextOperator(Elements.BUILD_CONFIGURATION_BUILD_SCRIPT).textAreaInput(buildScript);
+    }
+
+    public void setDependencies(String dependency) {
+        new TextInputDropdownOperator("input-dependencies").clickSelect(dependency);
     }
 
     public void setConfigEnvironment(String configEnvironment) {
