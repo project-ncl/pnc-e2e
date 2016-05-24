@@ -14,44 +14,48 @@ import util.RandomName;
  */
 public class Keycloak extends UITest {
 
+    protected static String buildName;
     protected static String configurationSetName;
-    protected static String keycloakName;
     protected static BuildConfigurationSetPageOperator buildGroupConfig;
 
     @BeforeClass
     public static void before() throws Exception {
 
-        keycloakName = "keycloak" + RandomName.getSufix();
+        buildName = "keycloak" + RandomName.getSufix();
     }
     
     @Before
-    public void createProject() {
+    public void createConfiguration() {
  
-        ProjectPageOperator project = new ProjectPageOperator(keycloakName);
+        // Project
+        ProjectPageOperator project = new ProjectPageOperator(buildName);
         project.createProjectMetadata();
         project.setName();
         project.submit();
-        buildGroupConfig = new BuildConfigurationSetPageOperator(keycloakName);
+
+        // Build Group Config
+        buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildConfigurationSet();
-        assertLinkExists(keycloakName);
+        assertLinkExists(buildName);
     }
 
     @Test
-    public void createKeycloakConfiguration() {
+    public void buildConfiguration() {
 
-        BuildConfigurationPageOperator keycloakConfig = new BuildConfigurationPageOperator(keycloakName);
-        keycloakConfig.createBuildConfig();
-        keycloakConfig.setProject(keycloakName);
-        keycloakConfig.setName(keycloakName);
-        keycloakConfig.setScmUrl("https://github.com/keycloak/keycloak.git");
-        keycloakConfig.setScmRevision("master");
-        keycloakConfig.setBuildScript("mvn clean deploy -Pdistribution");
-        keycloakConfig.setConfigEnvironment("Demo Environment 1");
-        keycloakConfig.setBuildConfigGroup(keycloakName);
-        keycloakConfig.submit();
-
+        // Build Config
+        BuildConfigurationPageOperator buildConfig = new BuildConfigurationPageOperator(buildName);
+        buildConfig.createBuildConfig();
+        buildConfig.setProject(buildName);
+        buildConfig.setName(buildName);
+        buildConfig.setScmUrl("https://github.com/keycloak/keycloak.git");
+        buildConfig.setScmRevision("master");
+        buildConfig.setBuildScript("mvn clean deploy -Pdistribution");
+        buildConfig.setConfigEnvironment("Demo Environment 1");
+        buildConfig.setBuildConfigGroup(buildName);
+        buildConfig.submit();
+        
         buildGroupConfig.buildBuildConfigurationSet();
         buildGroupConfig.menuBuildGroups();
-        assertLinkExists(keycloakName);
+        assertLinkExists(buildName);
     }
 }
