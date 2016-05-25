@@ -56,6 +56,7 @@ public class BuildConfigurationSetPageOperator extends Operator {
     public void createBuildGroupConfig() {
 
         menuBuildGroupConfigs();
+        new RefreshOperator().refresh();
         new ButtonOperator(Elements.CREATE_CONFIGURATION_SET_BUTTON).clickButton();
     }
 

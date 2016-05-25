@@ -30,7 +30,8 @@ public class TextInputDropdownOperator extends Operator {
             Thread.sleep(2000);
         } catch (Exception e) {
         }
-        element.findElements(By.tagName("li")).get(0).click();
+        List <WebElement> liElements = element.findElements(By.tagName("li"));
+        liElements.get(liElements.size()-1).click();
     }
 
     public void clickFirst() {

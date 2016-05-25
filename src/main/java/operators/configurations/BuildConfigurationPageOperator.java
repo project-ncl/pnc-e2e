@@ -52,10 +52,7 @@ public class BuildConfigurationPageOperator extends Operator {
     public void createBuildConfig() {
 
         menuBuildConfigs();
-        try {
-            Thread.sleep(5000);
-        } catch (Exception e) {
-        }
+        new RefreshOperator().refresh();
         new ButtonOperator(Elements.CREATE_CONFIGURATION_BUTTON).clickButton();
     }
 

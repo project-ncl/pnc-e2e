@@ -33,6 +33,7 @@ public class ProjectPageOperator extends Operator {
     public void createProjectMetadata() {
 
         menuProjectsMetadata();
+        new RefreshOperator().refresh();
         new ButtonOperator(Elements.CREATE_PROJECT_BUTTON).clickButton();
     }
 

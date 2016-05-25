@@ -14,41 +14,41 @@ import util.RandomName;
  */
 public class SingleSignOn extends UITest {
 
-    protected static String buildName;
-    protected static String configurationSetName;
     protected static String sufix;
-    protected static BuildConfigurationSetPageOperator buildGroupConfig;
+    protected static final String PROJECT_NAME = "rh-sso";
 
     @BeforeClass
     public static void before() throws Exception {
 
         sufix = RandomName.getSufix();
-        buildName = "rh-sso-1.9.x" + sufix;
     }
-    
+
     @Before
-    public void createConfiguration() {
+    public void createProject() {
  
         // Project
-        ProjectPageOperator project = new ProjectPageOperator(buildName);
+        ProjectPageOperator project = new ProjectPageOperator(PROJECT_NAME);
         project.createProjectMetadata();
         project.setName();
         project.submit();
-
-        // Build Group Config
-        buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
-        buildGroupConfig.createBuildConfigurationSet();
-        assertLinkExists(buildName);
     }
 
     @Test
-    public void buildConfiguration() {
+    public void createConfiguration() {
 
+        // Build Group Config
+        String buildName = "rh-sso-1.9.x" + sufix;
+        BuildConfigurationSetPageOperator buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
+        buildGroupConfig.createBuildGroupConfig();
+        buildGroupConfig.setName();
+        buildGroupConfig.submit();
+        assertLinkExists(buildName);
+        
         // Build Config
         String zxingName = "zxing-3.2.1" + sufix;
         BuildConfigurationPageOperator zxing = new BuildConfigurationPageOperator(zxingName);
         zxing.createBuildConfig();
-        zxing.setProject(buildName);
+        zxing.setProject(PROJECT_NAME);
         zxing.setName();
         zxing.setScmUrl("https://github.com/zxing/zxing.git");
         zxing.setScmRevision("zxing-3.2.1");
@@ -60,7 +60,7 @@ public class SingleSignOn extends UITest {
         String twitter4jName = "twitter4j-4.0.4" + sufix;
         BuildConfigurationPageOperator twitter4j = new BuildConfigurationPageOperator(twitter4jName);
         twitter4j.createBuildConfig();
-        twitter4j.setProject(buildName);
+        twitter4j.setProject(PROJECT_NAME);
         twitter4j.setName();
         twitter4j.setScmUrl("https://github.com/yusuke/twitter4j");
         twitter4j.setScmRevision("4.0.4");
@@ -72,7 +72,7 @@ public class SingleSignOn extends UITest {
         String liquibaseName = "liquibase-parent-3.4.1" + sufix;
         BuildConfigurationPageOperator liquibase = new BuildConfigurationPageOperator(liquibaseName);
         liquibase.createBuildConfig();
-        liquibase.setProject(buildName);
+        liquibase.setProject(PROJECT_NAME);
         liquibase.setName();
         liquibase.setScmUrl("https://github.com/liquibase/liquibase.git");
         liquibase.setScmRevision("liquibase-parent-3.4.1");
@@ -81,19 +81,19 @@ public class SingleSignOn extends UITest {
         liquibase.setBuildConfigGroup(buildName);
         liquibase.submit();
 
-        BuildConfigurationPageOperator buildConfig = new BuildConfigurationPageOperator(buildName);
-        buildConfig.createBuildConfig();
-        buildConfig.setProject(buildName);
-        buildConfig.setName();
-        buildConfig.setScmUrl("http://git.app.eng.bos.redhat.com/git/keycloak-prod.git");
-        buildConfig.setScmRevision("1.9.x-redhat");
-        buildConfig.setBuildScript("mvn clean deploy -Pdistribution");
-        buildConfig.setConfigEnvironment("Demo Environment 1");
-        buildConfig.setDependencies(zxingName);
-        buildConfig.setDependencies(twitter4jName);
-        buildConfig.setDependencies(liquibaseName);
-        buildConfig.setBuildConfigGroup(buildName);
-        buildConfig.submit();
+        BuildConfigurationPageOperator keycloak = new BuildConfigurationPageOperator(buildName);
+        keycloak.createBuildConfig();
+        keycloak.setProject(PROJECT_NAME);
+        keycloak.setName();
+        keycloak.setScmUrl("http://git.app.eng.bos.redhat.com/git/keycloak-prod.git");
+        keycloak.setScmRevision("1.9.x-redhat");
+        keycloak.setBuildScript("mvn clean deploy -Pdistribution");
+        keycloak.setConfigEnvironment("Demo Environment 1");
+        keycloak.setDependencies(zxingName);
+        keycloak.setDependencies(twitter4jName);
+        keycloak.setDependencies(liquibaseName);
+        keycloak.setBuildConfigGroup(buildName);
+        keycloak.submit();
         
         buildGroupConfig.buildBuildConfigurationSet();
         buildGroupConfig.menuBuildGroups();
