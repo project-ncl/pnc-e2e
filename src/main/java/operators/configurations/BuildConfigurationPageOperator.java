@@ -25,7 +25,7 @@ public class BuildConfigurationPageOperator extends Operator {
         new TextInputOperator(Elements.BUILD_CONFIGURATION_SCM_URL).insertInput(Strings.BUILD_CONFIGURATION_SCM_URL);
         new TextInputOperator(Elements.BUILD_CONFIGURATION_SCM_REVISION).insertInput(Strings.BUILD_CONFIGURATION_SCM_REVISION);
         new AreaTextOperator(Elements.BUILD_CONFIGURATION_BUILD_SCRIPT).textAreaInput(Strings.BUILD_CONFIGURATION_BUILD_SCRIPT);
-        new TextInputDropdownOperator(Elements.BUILD_CONFIGURATION_ENVIRONMENT).clickFirst();
+        new TextInputDropdownOperator(Elements.BUILD_CONFIGURATION_ENVIRONMENT).clickLast();
         //new TextInputOperator(Elements.BUILD_CONFIGURATION_PRODUCT).insertInputEnter(Strings.BUILD_CONFIGURATION_VERSION);
         new SubmitOperator().submit();
     }
@@ -54,6 +54,7 @@ public class BuildConfigurationPageOperator extends Operator {
         menuBuildConfigs();
         new RefreshOperator().refresh();
         new ButtonOperator(Elements.CREATE_CONFIGURATION_BUTTON).clickButton();
+        new TextInputOperator(Elements.BUILD_CONFIGURATION_INPUT).insertInput(name);
     }
 
     public void setProject(String projectName) {
@@ -61,39 +62,45 @@ public class BuildConfigurationPageOperator extends Operator {
         new TextInputDropdownOperator(Elements.BUILD_CONFIGURATION_PROJECT_SELECT).clickSelect(projectName);
     }
 
-    public void setName(String name) {
-        new TextInputOperator(Elements.BUILD_CONFIGURATION_INPUT).insertInput(name);
-    }
-
-    public void setName() {
-        new TextInputOperator(Elements.BUILD_CONFIGURATION_INPUT).insertInput(name);
-    }
-
     public void setScmUrl(String scmUrl) {
+
         new TextInputOperator(Elements.BUILD_CONFIGURATION_SCM_URL).insertInput(scmUrl);
     }
 
     public void setScmRevision(String scmRevision) {
+
         new TextInputOperator(Elements.BUILD_CONFIGURATION_SCM_REVISION).insertInput(scmRevision);
     }
 
     public void setBuildScript(String buildScript) {
+
         new AreaTextOperator(Elements.BUILD_CONFIGURATION_BUILD_SCRIPT).textAreaInput(buildScript);
     }
 
-    public void setDependencies(String dependency) {
-        new TextInputDropdownOperator("input-dependencies").clickSelect(dependency);
+    public void setDependencies(String... dependencies) {
+
+        for (String dependency : dependencies) {
+            new TextInputDropdownOperator("input-dependencies").clickSelect(dependency);
+        }
     }
 
     public void setConfigEnvironment(String configEnvironment) {
+
         new TextInputDropdownOperator(Elements.BUILD_CONFIGURATION_ENVIRONMENT).clickSelect(configEnvironment);
     }
 
+    public void setDefaultConfigEnvironment() {
+
+        new TextInputDropdownOperator(Elements.BUILD_CONFIGURATION_ENVIRONMENT).clickLast();
+    }
+
     public void setBuildConfigGroup(String buildConfigGroup) {
+
         new TextInputDropdownOperator("input-build-group-configs").clickSelect(buildConfigGroup);
     }
 
     public void submit() {
+
         new SubmitOperator().submit();
     }
 }

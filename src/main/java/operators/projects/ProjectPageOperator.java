@@ -14,8 +14,8 @@ public class ProjectPageOperator extends Operator {
     }
 
     public void newProject() {
-        new LinkOperator(Elements.BUILD_CONFIGURATION_LINK).clickLink();
-        new LinkOperator(Elements.PROJECT_LINK).clickAndRefresh();
+
+        menuProjectsMetadata();
         new ButtonOperator(Elements.CREATE_PROJECT_BUTTON).clickButton();
         new TextInputOperator(Elements.PROJECT_NAME).insertInput(name);
         new AreaTextOperator(Elements.PROJECT_DESCRIPTION).textAreaInput(Strings.PROJECT_DESCRIPTION);
@@ -30,20 +30,13 @@ public class ProjectPageOperator extends Operator {
         new LinkOperator(Elements.PROJECT_LINK).clickAndRefresh();
     }
 
-    public void createProjectMetadata() {
+    public void createProject(String description) {
 
         menuProjectsMetadata();
         new RefreshOperator().refresh();
         new ButtonOperator(Elements.CREATE_PROJECT_BUTTON).clickButton();
-    }
-
-    public void setName() {
-
         new TextInputOperator(Elements.PROJECT_NAME).insertInput(name);
-    }
-
-    public void submit() {
-
+        new AreaTextOperator(Elements.PROJECT_DESCRIPTION).textAreaInput(description);
         new SubmitOperator().submit();
     }
 }

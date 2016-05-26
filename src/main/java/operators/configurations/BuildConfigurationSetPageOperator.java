@@ -11,9 +11,6 @@ public class BuildConfigurationSetPageOperator extends Operator {
     public BuildConfigurationSetPageOperator(String name) {
         super(name);
     }
-    
-    public BuildConfigurationSetPageOperator() {
-    }
 
     public void createBuildConfigurationSet() {
 
@@ -58,14 +55,7 @@ public class BuildConfigurationSetPageOperator extends Operator {
         menuBuildGroupConfigs();
         new RefreshOperator().refresh();
         new ButtonOperator(Elements.CREATE_CONFIGURATION_SET_BUTTON).clickButton();
-    }
-
-    public void setName() {
-        
         new TextInputOperator(Elements.BUILD_CONFIGURATION_SET_INPUT).insertInput(name);
-    }
-
-    public void submit() {
         new SubmitOperator().submit();
     }
 }
