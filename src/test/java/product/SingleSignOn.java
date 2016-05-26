@@ -15,7 +15,7 @@ import util.RandomName;
 public class SingleSignOn extends UITest {
 
     private BuildConfigurationSetPageOperator buildGroupConfig;
-    private final String PROJECT_NAME = "rh-sso";
+    private final String PROJECT_NAME = "rh-sso-project";
     private String buildName;
     private String sufix;
 
@@ -26,7 +26,7 @@ public class SingleSignOn extends UITest {
         // Project
         new ProjectPageOperator(PROJECT_NAME).createProject("RH SSO project");
         // Build Group Config
-        buildName = PROJECT_NAME + sufix;
+        buildName = "rh-sso-group" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
         assertLinkExists(buildName);

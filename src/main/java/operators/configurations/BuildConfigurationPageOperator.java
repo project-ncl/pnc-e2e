@@ -91,6 +91,11 @@ public class BuildConfigurationPageOperator extends Operator {
 
     public void setDefaultConfigEnvironment() {
 
+        setConfigEnvironment("Demo");
+    }
+
+    public void setLastConfigEnvironment() {
+
         new TextInputDropdownOperator(Elements.BUILD_CONFIGURATION_ENVIRONMENT).clickLast();
     }
 

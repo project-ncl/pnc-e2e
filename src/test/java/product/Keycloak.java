@@ -15,7 +15,7 @@ import util.RandomName;
 public class Keycloak extends UITest {
 
     private BuildConfigurationSetPageOperator buildGroupConfig;
-    private final String PROJECT_NAME = "keycloak";
+    private final String PROJECT_NAME = "keycloak-project";
     private String buildName;
     private String sufix;
 
@@ -26,7 +26,7 @@ public class Keycloak extends UITest {
         // Project
         new ProjectPageOperator(PROJECT_NAME).createProject("Keycloak project");
         // Build Group Config
-        buildName = PROJECT_NAME + sufix;
+        buildName = "keycloak-group" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
         assertLinkExists(buildName);
