@@ -30,7 +30,7 @@ public class SingleSignOn extends UITest {
     }
 
     @Test
-    private void createKeycloak() {
+    public void createKeycloak() {
 
         // zxing
         String zxingProject = "zxing-project";
