@@ -30,7 +30,7 @@ public class Keycloak extends UITest {
     }
 
     @Test
-    public void createKeycloak() {
+    public void createConfiguration() {
 
         // Keycloak
         String keycloakProject = "keycloak";

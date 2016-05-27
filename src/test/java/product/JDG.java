@@ -30,7 +30,7 @@ public class JDG extends UITest {
     }
 
     @Test
-    public void createKeycloak() {
+    public void createConfiguration() {
 
         // infinispan
         String infinispanProject = "jdg-infinispan";

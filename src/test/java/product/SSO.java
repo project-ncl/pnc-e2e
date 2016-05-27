@@ -30,7 +30,7 @@ public class SSO extends UITest {
     }
 
     @Test
-    public void createKeycloak() {
+    public void createConfiguration() {
 
         // zxing
         String zxingProject = "zxing";
