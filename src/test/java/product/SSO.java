@@ -23,7 +23,7 @@ public class SSO extends UITest {
 
         sufix = RandomName.getSufix();
         // Build Group Config
-        buildName = "rh-sso-group" + sufix;
+        buildName = "rh-sso" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
         assertLinkExists(buildName);
@@ -33,7 +33,7 @@ public class SSO extends UITest {
     public void createKeycloak() {
 
         // zxing
-        String zxingProject = "zxing-project";
+        String zxingProject = "zxing";
         String zxingName = "zxing-3.2.1" + sufix;
         new ProjectPageOperator(zxingProject).createProject("ZXing project");
         BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(zxingName);
@@ -47,7 +47,7 @@ public class SSO extends UITest {
         config.submit();
 
         // twitter4j
-        String twitter4jProject = "twitter4j-project";
+        String twitter4jProject = "twitter4j";
         String twitter4jName = "twitter4j-4.0.4" + sufix;
         new ProjectPageOperator(twitter4jProject).createProject("Twitter4j project");
         config = new BuildConfigurationPageOperator(twitter4jName);
@@ -61,7 +61,7 @@ public class SSO extends UITest {
         config.submit();
 
         // liquidbase
-        String liquidbaseProject = "liquidbase-project";
+        String liquidbaseProject = "liquidbase";
         String liquibaseName = "liquibase-parent-3.4.1" + sufix;
         new ProjectPageOperator(liquidbaseProject).createProject("Liquidbase project");
         config = new BuildConfigurationPageOperator(liquibaseName);
@@ -75,7 +75,7 @@ public class SSO extends UITest {
         config.submit();
 
         // RH-SSO
-        String keycloakProject = "keycloak-project";
+        String keycloakProject = "keycloak";
         String keycloakName = "keycloak-1.9.x-redhat" + sufix;
         new ProjectPageOperator(keycloakProject).createProject("Keycloak project");
         config = new BuildConfigurationPageOperator(keycloakName);

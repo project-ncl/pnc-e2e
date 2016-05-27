@@ -23,7 +23,7 @@ public class Keycloak extends UITest {
 
         sufix = RandomName.getSufix();
         // Build Group Config
-        buildName = "keycloak-group" + sufix;
+        buildName = "keycloak" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
         assertLinkExists(buildName);
@@ -33,7 +33,7 @@ public class Keycloak extends UITest {
     public void createKeycloak() {
 
         // Keycloak
-        String keycloakProject = "keycloak-project";
+        String keycloakProject = "keycloak";
         String keycloakName = "keycloak-1.9.x" + sufix;
         new ProjectPageOperator(keycloakProject).createProject("Keycloak project");
         BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(keycloakName);
