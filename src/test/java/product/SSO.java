@@ -12,7 +12,7 @@ import util.RandomName;
 /**
  * Created by pkralik
  */
-public class SingleSignOn extends UITest {
+public class SSO extends UITest {
 
     private BuildConfigurationSetPageOperator buildGroupConfig;
     private String buildName;
