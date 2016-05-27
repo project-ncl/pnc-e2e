@@ -69,7 +69,7 @@ public class SSO extends UITest {
         config.setProject(liquidbaseProject);
         config.setScmUrl("https://github.com/liquibase/liquibase.git");
         config.setScmRevision("liquibase-parent-3.4.1");
-        config.setBuildScript("mvn clean deploy -DskipTests");
+        config.setBuildScript("mvn -P'!rpm' -pl '!liquibase-debian' clean deploy -DskipTests");
         config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
         config.submit();
@@ -83,9 +83,9 @@ public class SSO extends UITest {
         config.setProject(keycloakProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/git/keycloak-prod.git");
         config.setScmRevision("1.9.x-redhat");
-        config.setBuildScript("mvn clean deploy -Pdistribution");
+        config.setBuildScript("mvn clean deploy -Pdistribution -DskipTests=true");
         config.setDefaultConfigEnvironment();
-        config.setDependencies(zxingName, twitter4jName, liquibaseName);
+        config.setDependencies(liquibaseName, twitter4jName, zxingName);
         config.setBuildConfigGroup(buildName);
         config.submit();
     }
