@@ -41,7 +41,7 @@ public class Keycloak extends UITest {
         config.setProject(keycloakProject);
         config.setScmUrl("https://github.com/keycloak/keycloak.git");
         config.setScmRevision("1.9.x");
-        config.setBuildScript("mvn clean deploy -Pdistribution");
+        config.setBuildScript("mvn clean deploy -Pdistribution -DskipTests=true");
         config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
         config.submit();
