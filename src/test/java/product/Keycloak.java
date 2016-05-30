@@ -34,8 +34,8 @@ public class Keycloak extends UITest {
 
         keycloakConfiguration("master");
     }
-    
-        @Test
+
+    @Test
     public void createConfigurationBranch() {
 
         keycloakConfiguration("1.9.x");
