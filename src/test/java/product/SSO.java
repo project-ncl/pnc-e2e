@@ -31,12 +31,12 @@ public class SSO extends UITest {
 
     @Test
     public void createConfigurationRevision() {
-        ssoConfiguration("1.9.x-redhat", "keycloak-1.9.x-redhat");
+        ssoConfiguration("1.9.0.Final-redhat", "keycloak-1.9.0.Final-redhat");
     }
 
     @Test
     public void createConfigurationMaster() {
-        ssoConfiguration("master", "keycloak-master-redhat");
+        ssoConfiguration("master", "keycloak-SNAPSHOT-redhat");
     }
 
 
