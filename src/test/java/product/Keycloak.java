@@ -35,7 +35,7 @@ public class Keycloak extends UITest {
         // Keycloak
         String configProject = "keycloak";
         new ProjectPageOperator(configProject).createProject("Keycloak project");
-        String configName = configProject + "-master" + sufix;
+        String configName = "keycloak-SNAPSHOT" + sufix;
         BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(configName);
         config.createBuildConfig();
         config.setProject(configProject);
