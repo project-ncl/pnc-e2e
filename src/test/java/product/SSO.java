@@ -30,12 +30,22 @@ public class SSO extends UITest {
     }
 
     @Test
-    public void createConfiguration() {
+    public void createConfigurationRevision() {
+        ssoConfiguration("1.9.x-redhat", "keycloak-1.9.x-redhat");
+    }
+
+    @Test
+    public void createConfigurationMaster() {
+        ssoConfiguration("master", "keycloak-master-redhat");
+    }
+
+
+    private void ssoConfiguration(String revision, String name) {
 
         // zxing
         String zxingProject = "zxing";
-        String zxingName = "zxing-3.2.1" + sufix;
         new ProjectPageOperator(zxingProject).createProject("ZXing project");
+        String zxingName = "zxing-3.2.1" + sufix;
         BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(zxingName);
         config.createBuildConfig();
         config.setProject(zxingProject);
@@ -48,8 +58,8 @@ public class SSO extends UITest {
 
         // twitter4j
         String twitter4jProject = "twitter4j";
-        String twitter4jName = "twitter4j-4.0.4" + sufix;
         new ProjectPageOperator(twitter4jProject).createProject("Twitter4j project");
+        String twitter4jName = "twitter4j-4.0.4" + sufix;
         config = new BuildConfigurationPageOperator(twitter4jName);
         config.createBuildConfig();
         config.setProject(twitter4jProject);
@@ -62,8 +72,8 @@ public class SSO extends UITest {
 
         // liquidbase
         String liquidbaseProject = "liquidbase";
-        String liquibaseName = "liquibase-parent-3.4.1" + sufix;
         new ProjectPageOperator(liquidbaseProject).createProject("Liquidbase project");
+        String liquibaseName = "liquibase-parent-3.4.1" + sufix;     
         config = new BuildConfigurationPageOperator(liquibaseName);
         config.createBuildConfig();
         config.setProject(liquidbaseProject);
@@ -76,13 +86,13 @@ public class SSO extends UITest {
 
         // RH-SSO
         String keycloakProject = "keycloak";
-        String keycloakName = "keycloak-1.9.x-redhat" + sufix;
         new ProjectPageOperator(keycloakProject).createProject("Keycloak project");
+        String keycloakName = name + sufix;
         config = new BuildConfigurationPageOperator(keycloakName);
         config.createBuildConfig();
         config.setProject(keycloakProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/git/keycloak-prod.git");
-        config.setScmRevision("1.9.x-redhat");
+        config.setScmRevision(revision);
         config.setBuildScript("mvn clean deploy -Pdistribution -DskipTests=true");
         config.setDefaultConfigEnvironment();
         config.setDependencies(liquibaseName, twitter4jName, zxingName);
