@@ -30,18 +30,29 @@ public class Keycloak extends UITest {
     }
 
     @Test
-    public void createConfiguration() {
+    public void createConfigurationMaster() {
+
+        keycloakConfiguration("master");
+    }
+    
+        @Test
+    public void createConfigurationBranch() {
+
+        keycloakConfiguration("1.9.x");
+    }
+
+    private void keycloakConfiguration(String revision) {
 
         // Keycloak
         String keycloakProject = "keycloak";
-        String keycloakName = "keycloak-1.9.x" + sufix;
         new ProjectPageOperator(keycloakProject).createProject("Keycloak project");
+        String keycloakName = "keycloak-" + revision + sufix;
         BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(keycloakName);
         config.createBuildConfig();
         config.setProject(keycloakProject);
         config.setScmUrl("https://github.com/keycloak/keycloak.git");
-        config.setScmRevision("1.9.x");
-        config.setBuildScript("mvn clean deploy -Pdistribution -DskipTests=true");
+        config.setScmRevision(revision);
+        config.setBuildScript("mvn clean deploy -Pdistribution");
         config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
         config.submit();
