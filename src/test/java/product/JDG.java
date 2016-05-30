@@ -34,8 +34,8 @@ public class JDG extends UITest {
 
         // infinispan
         String infinispanProject = "jdg-infinispan";
-        String infinispanName = infinispanProject + sufix;
         new ProjectPageOperator(infinispanProject).createProject("JDG Infinispan");
+        String infinispanName = infinispanProject + sufix;
         BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(infinispanName);
         config.createBuildConfig();
         config.setProject(infinispanProject);
@@ -48,8 +48,8 @@ public class JDG extends UITest {
 
         // spark
         String sparkProject = "jdg-spark";
-        String sparkName = sparkProject + sufix;
         new ProjectPageOperator(sparkProject).createProject("JDG Spark");
+        String sparkName = sparkProject + sufix;
         config = new BuildConfigurationPageOperator(sparkName);
         config.createBuildConfig();
         config.setProject(sparkProject);
@@ -63,8 +63,8 @@ public class JDG extends UITest {
 
         // camel
         String camelProject = "jdg-camel";
-        String camelName = camelProject + sufix;
         new ProjectPageOperator(camelProject).createProject("JDG Camel");
+        String camelName = camelProject + sufix;
         config = new BuildConfigurationPageOperator(camelName);
         config.createBuildConfig();
         config.setProject(camelProject);
@@ -78,8 +78,8 @@ public class JDG extends UITest {
 
         // packaging
         String packagingProject = "jdg-packaging";
-        String packagingName = packagingProject + sufix;
         new ProjectPageOperator(packagingProject).createProject("JDG Packaging");
+        String packagingName = packagingProject + sufix;
         config = new BuildConfigurationPageOperator(packagingName);
         config.createBuildConfig();
         config.setProject(packagingProject);
