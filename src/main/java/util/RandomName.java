@@ -9,7 +9,7 @@ import java.util.UUID;
 public class RandomName {
 
     public static String getRandomName() {
-        return "pncweb" + getSufix();
+        return "pncweb-smoke" + getSufix();
     }
 
     /**
