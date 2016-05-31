@@ -142,18 +142,13 @@ public class BuildGroupConfig extends UITest {
     }
 
     @Test
-    public void ssoConfigurationRevision() {
+    public void ssoConfiguration() {
 
-        ssoConfiguration("1.9.0.Final-redhat", "keycloak-1.9.0.Final-redhat");
+        createSSOConfiguration("1.9.0.Final-redhat", "keycloak-1.9.0.Final-redhat");
+        createSSOConfiguration("master", "keycloak-SNAPSHOT-redhat");
     }
 
-    @Test
-    public void ssoConfigurationMaster() {
-
-        ssoConfiguration("master", "keycloak-SNAPSHOT-redhat");
-    }
-
-    private void ssoConfiguration(String revision, String name) {
+    private void createSSOConfiguration(String revision, String name) {
 
         // Build Group Config
         buildName = "rh-sso" + sufix;
