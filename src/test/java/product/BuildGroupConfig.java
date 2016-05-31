@@ -142,6 +142,30 @@ public class BuildGroupConfig extends UITest {
     }
 
     @Test
+    public void pncSimpleProjectConfiguration() {
+
+        // Build Group Config
+        buildName = "pnc-simple-test" + sufix;
+        buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
+        buildGroupConfig.createBuildGroupConfig();
+        assertLinkExists(buildName);
+
+        // Fabric8
+        String configProject = "pnc-simple-test";
+        new ProjectPageOperator(configProject).createProject("PNC Simple Test project");
+        String configName = "pnc-simple-test-SNAPSHOT" + sufix;
+        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(configName);
+        config.createBuildConfig();
+        config.setProject(configProject);
+        config.setScmUrl("https://github.com/project-ncl/pnc-simple-test-project.git");
+        config.setScmRevision("master");
+        config.setBuildScript("mvn javadoc:jar deploy");
+        config.setDefaultConfigEnvironment();
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+    }
+
+    @Test
     public void ssoConfiguration() {
 
         createSSOConfiguration("1.9.0.Final-redhat", "keycloak-1.9.0.Final-redhat");
