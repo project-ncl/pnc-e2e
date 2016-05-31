@@ -12,7 +12,7 @@ import util.RandomName;
 /**
  * Created by pkralik
  */
-public class BuildGroupConfig extends UITest {
+public class BuildGroupConfigTest extends UITest {
 
     private BuildConfigurationSetPageOperator buildGroupConfig;
     private String buildName;
