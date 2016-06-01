@@ -150,7 +150,7 @@ public class BuildGroupConfigTest extends UITest {
         buildGroupConfig.createBuildGroupConfig();
         assertLinkExists(buildName);
 
-        // Fabric8
+        // PNC Test simple
         String configProject = "pnc-simple-test";
         new ProjectPageOperator(configProject).createProject("PNC Simple Test project");
         String configName = "pnc-simple-test-SNAPSHOT" + sufix;
