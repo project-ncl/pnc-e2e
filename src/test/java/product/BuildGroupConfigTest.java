@@ -199,6 +199,12 @@ public class BuildGroupConfigTest extends UITest {
     @Test
     public void ssoConfiguration() {
 
+        createSSOConfiguration("1.9.x-redhat", "keycloak-1.9.x-redhat");
+    }
+
+    @Test
+    public void ssoConfigurationBranch() {
+
         createSSOConfiguration("1.9.0.Final-redhat", "keycloak-1.9.0.Final-redhat");
     }
 
