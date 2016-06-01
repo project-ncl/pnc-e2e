@@ -16,12 +16,16 @@ public class VersionPageOperator extends Operator {
     }
 
     public void newVersion() {
+
+        createVersion(Strings.PRODUCT_VERSION);
+    }
+
+    public void createVersion(String version) {
         new LinkOperator(Elements.PRODUCT_LINK).clickLink();
         new RefreshOperator().refresh();
         new LinkOperator(productName).clickLink();
         new ButtonOperator(Elements.CREATE_VERSION_BUTTON).clickButton();
-        new TextInputOperator(Elements.VERSION_INPUT).insertInput(Strings.PRODUCT_VERSION);
+        new TextInputOperator(Elements.VERSION_INPUT).insertInput(version);
         new SubmitOperator().submit();
     }
-
 }

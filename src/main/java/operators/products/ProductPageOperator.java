@@ -16,7 +16,8 @@ public class ProductPageOperator extends Operator {
     }
 
     public void newProduct() {
-        new LinkOperator(Elements.PRODUCT_LINK).clickLink();
+
+        menuProduct();
         new ButtonOperator(Elements.CREATE_PRODUCT_BUTTON).clickButton();
         new TextInputOperator(Elements.PRODUCT_NAME).insertInput(productName);
         new AreaTextOperator(Elements.PRODUCT_DESCRIPTION).textAreaInput(Strings.PRODUCT_DESCRIPTION);
@@ -26,4 +27,18 @@ public class ProductPageOperator extends Operator {
         new SubmitOperator().submit();
     }
 
+    public void menuProduct() {
+
+        new LinkOperator(Elements.PRODUCT_LINK).clickLink();
+    }
+
+    public void createProduct(String description) {
+
+        menuProduct();
+        new RefreshOperator().refresh();
+        new ButtonOperator(Elements.CREATE_PRODUCT_BUTTON).clickButton();
+        new TextInputOperator(Elements.PRODUCT_NAME).insertInput(productName);
+        new AreaTextOperator(Elements.PRODUCT_DESCRIPTION).textAreaInput(description);
+        new SubmitOperator().submit();
+    }
 }
