@@ -27,29 +27,56 @@ public class BuildGroupConfigTest extends UITest {
     @Test
     public void fabricConfiguration() {
 
+        createBuildGroupConfiguration("fabric8", "io-fabric8-SNAPSHOT",
+                "https://github.com/fabric8io/fabric8.git",
+                "master",
+                "mvn clean deploy -DskipTests=true");
+    }
+
+    @Test
+    public void jdgConfiguration() {
+
         // Build Group Config
-        buildName = "fabric" + sufix;
+        buildName = "jdg7" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
         assertLinkExists(buildName);
 
-        // Fabric8
-        String configProject = "fabric8";
-        new ProjectPageOperator(configProject).createProject("Fabric8 project");
-        String configName = "io-fabric8-SNAPSHOT" + sufix;
-        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(configName);
+        // jdg-management-console
+        String consoleProject = "jdg-management-console";
+        new ProjectPageOperator(consoleProject).createProject("JDG Management Console");
+        String consoleName = consoleProject + sufix;
+        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(consoleName);
         config.createBuildConfig();
-        config.setProject(configProject);
-        config.setScmUrl("https://github.com/fabric8io/fabric8.git");
-        config.setScmRevision("master");
-        config.setBuildScript("mvn clean deploy -DskipTests=true");
+        config.setProject(consoleProject);
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-management-console.git");
+        config.setScmRevision("JDG_7.0.0.ER4_pnc_wa__3");
+        config.setBuildScript("mvn clean deploy "
+                + "-DnodeDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/ "
+                + "-DnpmDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/npm/ "
+                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49152");
         config.setDefaultConfigEnvironment();
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+
+        // jdg-infinispan
+        String infinispanProject = "jdg-infinispan";
+        new ProjectPageOperator(infinispanProject).createProject("JDG Infinispan");
+        String infinispanName = infinispanProject + sufix;
+        config = new BuildConfigurationPageOperator(infinispanName);
+        config.createBuildConfig();
+        config.setProject(infinispanProject);
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/infinispan.git");
+        config.setScmRevision("JDG_7.0.0.ER4_pnc_wa_2");
+        config.setBuildScript("mvn clean deploy -DskipTests -Pdistribution");
+        config.setDefaultConfigEnvironment();
+        config.setDependencies(consoleName);
         config.setBuildConfigGroup(buildName);
         config.submit();
     }
 
     @Test
-    public void jdgConfiguration() {
+    public void jdgConfiguration7() {
 
         // Build Group Config
         buildName = "jdg" + sufix;
@@ -120,49 +147,19 @@ public class BuildGroupConfigTest extends UITest {
     @Test
     public void keycloakConfiguration() {
 
-        // Build Group Config
-        buildName = "keycloak" + sufix;
-        buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
-        buildGroupConfig.createBuildGroupConfig();
-        assertLinkExists(buildName);
-
-        // Keycloak
-        String configProject = "keycloak";
-        new ProjectPageOperator(configProject).createProject("Keycloak project");
-        String configName = "keycloak-SNAPSHOT" + sufix;
-        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(configName);
-        config.createBuildConfig();
-        config.setProject(configProject);
-        config.setScmUrl("https://github.com/keycloak/keycloak.git");
-        config.setScmRevision("master");
-        config.setBuildScript("mvn clean deploy -Pdistribution -DskipTests=true");
-        config.setDefaultConfigEnvironment();
-        config.setBuildConfigGroup(buildName);
-        config.submit();
+        createBuildGroupConfiguration("keycloak", "keycloak-SNAPSHOT",
+                "https://github.com/keycloak/keycloak.git",
+                "master",
+                "mvn clean deploy -Pdistribution -DskipTests=true");
     }
 
     @Test
     public void pncSimpleProjectConfiguration() {
 
-        // Build Group Config
-        buildName = "pnc-simple-test" + sufix;
-        buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
-        buildGroupConfig.createBuildGroupConfig();
-        assertLinkExists(buildName);
-
-        // PNC Test simple
-        String configProject = "pnc-simple-test";
-        new ProjectPageOperator(configProject).createProject("PNC Simple Test project");
-        String configName = "pnc-simple-test-SNAPSHOT" + sufix;
-        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(configName);
-        config.createBuildConfig();
-        config.setProject(configProject);
-        config.setScmUrl("https://github.com/project-ncl/pnc-simple-test-project.git");
-        config.setScmRevision("master");
-        config.setBuildScript("mvn javadoc:jar deploy");
-        config.setDefaultConfigEnvironment();
-        config.setBuildConfigGroup(buildName);
-        config.submit();
+        createBuildGroupConfiguration("pnc-simple-test", "pnc-simple-test-SNAPSHOT",
+                "https://github.com/project-ncl/pnc-simple-test-project.git",
+                "master",
+                "mvn javadoc:jar deploy");
     }
 
     @Test
