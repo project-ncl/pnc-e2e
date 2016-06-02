@@ -31,8 +31,9 @@ public class ImportPageOperator extends Operator {
         }
     }
 
-    public void finishImport() {
+    public void finishImport(String buildScript) {
 
+        new AreaTextOperator("bcFormInput5").textAreaInput(buildScript);
         new ButtonDropdownOperator("data.environmentId").clickFirst();
         new ButtonDropdownOperator("data.projectId").clickSelect(name);
         new SubmitOperator().submit("Finish process");
