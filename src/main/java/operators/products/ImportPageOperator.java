@@ -30,10 +30,12 @@ public class ImportPageOperator extends Operator {
     public void finishImport(String buildScript) {
 
         try {
-            Thread.sleep(5000);
+            Thread.sleep(8000);
         } catch (Exception e) {
         }
         new AreaTextOperator("bcFormInput5").textAreaInput(buildScript);
+        new ButtonDropdownOperator("data.environmentId").clickFirst();
+        new ButtonDropdownOperator("data.projectId").clickSelect(name);
         new SubmitOperator().submit("Finish process");
     }
 
