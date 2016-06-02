@@ -25,18 +25,21 @@ public class ImportPageOperator extends Operator {
         new TextInputOperator("startFormInput3").insertInput(gitURL);
         new TextInputOperator("startFormInput4").insertInput(revision);
         new SubmitOperator().submit();
-    }
-
-    public void finishImport(String buildScript) {
-
         try {
             Thread.sleep(8000);
         } catch (Exception e) {
         }
-        new AreaTextOperator("bcFormInput5").textAreaInput(buildScript);
+    }
+
+    public void finishImport() {
+
         new ButtonDropdownOperator("data.environmentId").clickFirst();
         new ButtonDropdownOperator("data.projectId").clickSelect(name);
         new SubmitOperator().submit("Finish process");
+        try {
+            Thread.sleep(8000);
+        } catch (Exception e) {
+        }
     }
 
     public void menuImportProduct() {

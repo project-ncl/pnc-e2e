@@ -24,6 +24,6 @@ public class ImportProductTest extends UITest {
 
         ImportPageOperator product = new ImportPageOperator(productName);
         product.importProduct(productVersion, "https://github.com/project-ncl/pnc-simple-test-project.git", "master");
-        product.finishImport("mvn javadoc:jar deploy");
+        product.finishImport();
     }
 }
