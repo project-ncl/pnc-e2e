@@ -1,5 +1,8 @@
 package product;
 
+import operators.base.BuildOperator;
+import operators.base.LinkOperator;
+import operators.base.RefreshOperator;
 import operators.products.ProductPageOperator;
 import operators.projects.ProjectPageOperator;
 import operators.products.ImportPageOperator;
@@ -25,5 +28,12 @@ public class ImportProductTest extends UITest {
         ImportPageOperator product = new ImportPageOperator(productName);
         product.importProduct(productVersion, "https://github.com/project-ncl/pnc-simple-test-project.git", "master");
         product.finishImport();
+        new LinkOperator("org.jboss.pnc.test:pnc-simple-test-project").clickPartialLink();
+        try {
+            Thread.sleep(5000);
+        } catch (Exception e) {
+        }
+        new RefreshOperator().refresh();
+        new BuildOperator().startBuild();
     }
 }
