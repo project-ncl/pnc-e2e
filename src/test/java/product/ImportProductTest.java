@@ -20,7 +20,7 @@ public class ImportProductTest extends UITest {
         importProduct("pnc-simple-test", "1.0", "PNC Simple Test",
                 "https://github.com/project-ncl/pnc-simple-test-project.git",
                 "master",
-                "mvn javadoc:jar deploy",
+                "mvn clean deploy",
                 "org.jboss.pnc.test:pnc-simple-test-project");
     }
 
@@ -42,13 +42,8 @@ public class ImportProductTest extends UITest {
         new RefreshOperator().refresh();
 
         ImportPageOperator product = new ImportPageOperator(param[0]);
-        product.importProduct(param[1], param[3], param[4]);
-        product.finishImport(param[5]);
-        new LinkOperator(param[6]).clickPartialLink();
-        try {
-            Thread.sleep(5000);
-        } catch (Exception e) {
-        }
+        product.importProduct(param[1], param[3], param[4], param[5]);
+        product.findProduct(param[6]);
         new RefreshOperator().refresh();
         new BuildOperator().startBuild();
     }

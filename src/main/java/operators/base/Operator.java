@@ -2,6 +2,8 @@ package operators.base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -17,7 +19,8 @@ public abstract class Operator {
         this.name = name;
     }
 
-    public Operator() {}
+    public Operator() {
+    }
 
     public static WebDriver getDriver() {
         return driver;
@@ -26,27 +29,34 @@ public abstract class Operator {
     public WebElement getElementByXpath(String xpath) {
         try {
             return driver.findElement(By.xpath(xpath));
-        }
-        catch(NoSuchElementException e) {
-            throw new AssertionError("Failed to find xpath element: "+xpath);
+        } catch (NoSuchElementException e) {
+            throw new AssertionError("Failed to find xpath element: " + xpath);
         }
     }
 
     public WebElement getElementByLinkText(String linkText, int n) {
         try {
             return driver.findElements(By.linkText(linkText)).get(n);
-        }
-        catch(NoSuchElementException e) {
-            throw new AssertionError("Failed to find link: "+linkText);
+        } catch (NoSuchElementException e) {
+            throw new AssertionError("Failed to find link: " + linkText);
         }
     }
 
     public WebElement getElementByPartialLinkText(String linkText, int n) {
         try {
             return driver.findElements(By.partialLinkText(linkText)).get(n);
+        } catch (NoSuchElementException e) {
+            throw new AssertionError("Failed to find link: " + linkText);
         }
-        catch(NoSuchElementException e) {
-            throw new AssertionError("Failed to find link: "+linkText);
-        }
+    }
+
+    public WebElement waitUntilId(String id) {
+        WebDriverWait wait = new WebDriverWait(driver, 240);
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.id(id)));
+    }
+
+    public WebElement waitUntilPartialLink(String link) {
+        WebDriverWait wait = new WebDriverWait(driver, 240);
+        return wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(link)));
     }
 }
