@@ -34,6 +34,16 @@ public class ImportProductTest extends UITest {
                 "org.keycloak:keycloak-parent");
     }
 
+    @Test
+    public void jdgImport() {
+
+        importProduct("jdg-infinispan", "7.0", "JDG Infinispan",
+                "http://git.app.eng.bos.redhat.com/infinispan/infinispan.git",
+                "JDG_7.0.0.ER4",
+                "mvn clean deploy -Pdistribution -DskipTests=true",
+                "org.infinispan:infinispan");
+    }
+
     private void importProduct(String... param) {
 
         new ProductPageOperator(param[0]).createProduct(param[2] + " product");
