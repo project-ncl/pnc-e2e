@@ -25,19 +25,19 @@ public class BuildGroupConfigTest extends UITest {
     }
 
     @Test
-    public void fabricConfiguration() {
+    public void pncSimpleProjectConfiguration() {
 
-        createBuildGroupConfiguration("fabric8", "io-fabric8-SNAPSHOT",
-                "https://github.com/fabric8io/fabric8.git",
+        createBuildGroupConfiguration("pnc-simple-test", "pnc-simple-test-SNAPSHOT",
+                "https://github.com/project-ncl/pnc-simple-test-project.git",
                 "master",
-                "mvn clean deploy -DskipTests=true");
+                "mvn clean deploy");
     }
 
     @Test
     public void jdgConfiguration() {
 
         // Build Group Config
-        buildName = "jdg7" + sufix;
+        buildName = "jdg" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
         assertLinkExists(buildName);
@@ -50,11 +50,12 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(consoleProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-management-console.git");
-        config.setScmRevision("JDG_7.0.0.ER4_pnc_wa__3");
+        config.setScmRevision("JDG_7.0.0.ER4_pnc_wa__4");
         config.setBuildScript("mvn clean deploy "
                 + "-DnodeDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/ "
                 + "-DnpmDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/npm/ "
-                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49152");
+                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49152\n"
+                + "sleep 5400");
         config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
         config.submit();
@@ -67,7 +68,7 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(infinispanProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/infinispan.git");
-        config.setScmRevision("JDG_7.0.0.ER4_pnc_wa_2");
+        config.setScmRevision("JDG_7.0.0.ER4");
         config.setBuildScript("mvn clean deploy -DskipTests -Pdistribution");
         config.setDefaultConfigEnvironment();
         config.setDependencies(consoleName);
@@ -76,7 +77,7 @@ public class BuildGroupConfigTest extends UITest {
     }
 
     @Test
-    public void jdgConfiguration7() {
+    public void jdg7Configuration() {
 
         // Build Group Config
         buildName = "jdg" + sufix;
@@ -145,30 +146,15 @@ public class BuildGroupConfigTest extends UITest {
     }
 
     @Test
-    public void keycloakConfiguration() {
+    public void ssoConfiguration() {
 
-        createBuildGroupConfiguration("keycloak", "keycloak-SNAPSHOT",
-                "https://github.com/keycloak/keycloak.git",
-                "master",
-                "mvn clean deploy -Pdistribution -DskipTests=true");
+        createSSOConfiguration("1.9.0.Final-redhat", "keycloak-1.9.0.Final-redhat");
     }
 
     @Test
-    public void pncSimpleProjectConfiguration() {
+    public void sso19xConfiguration() {
 
-        createBuildGroupConfiguration("pnc-simple-test", "pnc-simple-test-SNAPSHOT",
-                "https://github.com/project-ncl/pnc-simple-test-project.git",
-                "master",
-                "mvn javadoc:jar deploy");
-    }
-
-    @Test
-    public void pncConfiguration() {
-
-        createBuildGroupConfiguration("pnc-ncl", "pnc-1.0.0-SNAPSHOT",
-                "https://github.com/project-ncl/pnc.git",
-                "master",
-                "mvn clean deploy -DskipTests=true");
+        createSSOConfiguration("1.9.x-redhat", "keycloak-1.9.x-redhat");
     }
 
     private void createBuildGroupConfiguration(String... param) {
@@ -191,24 +177,6 @@ public class BuildGroupConfigTest extends UITest {
         config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
         config.submit();
-    }
-
-    @Test
-    public void ssoConfiguration() {
-
-        createSSOConfiguration("1.9.0.Final-redhat", "keycloak-1.9.0.Final-redhat");
-    }
-
-    @Test
-    public void ssoConfigurationBranch() {
-
-        createSSOConfiguration("1.9.x-redhat", "keycloak-1.9.x-redhat");
-    }
-
-    @Test
-    public void ssoConfigurationMaster() {
-
-        createSSOConfiguration("master", "keycloak-SNAPSHOT-redhat");
     }
 
     private void createSSOConfiguration(String revision, String name) {
