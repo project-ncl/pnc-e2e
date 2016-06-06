@@ -1,7 +1,6 @@
 package operators.products;
 
 import operators.base.*;
-import org.openqa.selenium.WebElement;
 
 /**
  * Created by pkralik.
@@ -34,7 +33,7 @@ public class ImportPageOperator extends Operator {
         new SubmitOperator().submit("Finish process");
     }
 
-    public void findProduct(String configLink) {
+    public void findProduct() {
 
         waitUntilPartialLink(groupConfigName);
         new LinkOperator(groupConfigName).clickPartialLink();
