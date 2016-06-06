@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
  */
 public abstract class Operator {
 
+    public static final int TIMEOUT = 240;
     protected static WebDriver driver;
     public String name;
 
@@ -51,12 +52,12 @@ public abstract class Operator {
     }
 
     public WebElement waitUntilId(String id) {
-        WebDriverWait wait = new WebDriverWait(driver, 240);
+        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         return wait.until(ExpectedConditions.presenceOfElementLocated(By.id(id)));
     }
 
     public WebElement waitUntilPartialLink(String link) {
-        WebDriverWait wait = new WebDriverWait(driver, 240);
+        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         return wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(link)));
     }
 }
