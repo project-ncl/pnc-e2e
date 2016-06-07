@@ -27,7 +27,7 @@ public class ImportProductTest extends UITest {
 
         importProduct("keycloak", "1.9", "RH SSO",
                 "http://git.app.eng.bos.redhat.com/git/keycloak-prod.git",
-                "1.9.0.Final-redhat",
+                "keycloak-1.9.x-redhat",
                 "mvn clean deploy -Pdistribution -DskipTests=true");
     }
 
