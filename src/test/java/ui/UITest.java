@@ -12,12 +12,9 @@ import org.openqa.selenium.NoSuchElementException;
 import util.UITester;
 
 /**
- * Created by eunderhi on 28/07/15.
- * Base class that implements the basic set up
- * and teardown elements of all UI tests, and provides
- * asserts common to all tests.
+ * Created by eunderhi on 28/07/15. Base class that implements the basic set up and teardown elements of all UI tests, and
+ * provides asserts common to all tests.
  */
-
 public class UITest {
 
     public UITester tester;
@@ -40,11 +37,9 @@ public class UITest {
         try {
             Thread.sleep(5000);
             tester.getDriver().findElement(By.linkText(linkName)).isDisplayed();
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             throw new AssertionFailedError("link " + linkName + " does not exist when it should");
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             Logger.getLogger(UITest.class.getName()).log(Level.SEVERE, null, e);
         }
     }
@@ -52,21 +47,18 @@ public class UITest {
     public void assertLinkDoesNotExists(String linkName) {
         try {
             tester.getDriver().findElement(By.linkText(linkName)).isEnabled();
-        }
-        catch(NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             return;
         }
 
         throw new AssertionFailedError("link " + linkName + " was visible when it should not have been");
     }
 
-
     public void assertBuildRecordExists(String recordName) {
         String linkText = " — " + recordName;
         try {
             tester.getDriver().findElement(By.partialLinkText(linkText)).isDisplayed();
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             throw new AssertionFailedError("Build record " + recordName + " does not exist when it should");
         }
     }
@@ -75,8 +67,7 @@ public class UITest {
         String cloneName = "_" + configurationName;
         try {
             tester.getDriver().findElement(By.partialLinkText(cloneName)).isDisplayed();
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             throw new AssertionFailedError("Cloned configuration " + cloneName + " does not exist when it should");
         }
     }
@@ -86,10 +77,8 @@ public class UITest {
         try {
             String h1Text = tester.getDriver().findElement(By.xpath("//h1[@class='ng-binding']")).getText();
             Assert.assertTrue(h1Text.contains(recordName));
-        }
-        catch (NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             throw new AssertionFailedError("Build " + recordName + " does not exist when it should");
         }
     }
 }
-
