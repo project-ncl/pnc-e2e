@@ -33,11 +33,18 @@ public class ImportPageOperator extends Operator {
         new SubmitOperator().submit("Finish process");
     }
 
-    public void findProduct() {
+    public void buildConfigurationSet() {
 
-        waitUntilPartialLink(groupConfigName);
-        new LinkOperator(groupConfigName).clickPartialLink();
-        waitUntilPartialLink("Build Outputs");
+        waitUntilLink(groupConfigName);
+        new LinkOperator(groupConfigName).clickLink();
+        waitUntilLink("Build Outputs");
+        new RefreshOperator().refresh();
+        new BuildOperator().startBuild();
+    }
+
+    public String getConfigSetName() {
+
+        return groupConfigName;
     }
 
     public void menuImportProduct() {

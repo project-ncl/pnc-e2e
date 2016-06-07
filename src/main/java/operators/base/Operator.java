@@ -56,6 +56,11 @@ public abstract class Operator {
         return wait.until(ExpectedConditions.presenceOfElementLocated(By.id(id)));
     }
 
+    public WebElement waitUntilLink(String link) {
+        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
+        return wait.until(ExpectedConditions.elementToBeClickable(By.linkText(link)));
+    }
+
     public WebElement waitUntilPartialLink(String link) {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         return wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(link)));
