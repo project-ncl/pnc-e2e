@@ -26,7 +26,7 @@ public class ImportProductTest extends UITest {
     @Test
     public void sso() {
 
-        ssoConfig("keycloak-1.9.x-redhat");
+        ssoConfig("1.9.x-redhat");
     }
 
     @Test
@@ -68,6 +68,15 @@ public class ImportProductTest extends UITest {
         importConfig("pnc-ncl", "1.0", "PNC NCL",
                 "https://github.com/project-ncl/pnc.git",
                 "master",
+                "mvn clean deploy -DskipTests=true");
+    }
+
+    @Test
+    public void pnc09() {
+
+        importConfig("pnc-ncl", "1.0", "PNC NCL",
+                "https://github.com/project-ncl/pnc.git",
+                "v0.9",
                 "mvn clean deploy -DskipTests=true");
     }
 
