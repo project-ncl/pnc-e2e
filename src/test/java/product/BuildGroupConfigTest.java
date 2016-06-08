@@ -25,7 +25,7 @@ public class BuildGroupConfigTest extends UITest {
     }
 
     @Test
-    public void pncSimpleProjectConfiguration() {
+    public void pncSimpleProject() {
 
         createBuildGroupConfiguration("pnc-simple-test", "pnc-simple-test-SNAPSHOT",
                 "https://github.com/project-ncl/pnc-simple-test-project.git",
@@ -34,7 +34,7 @@ public class BuildGroupConfigTest extends UITest {
     }
 
     @Test
-    public void jdgConfiguration() {
+    public void jdg() {
 
         // Build Group Config
         buildName = "jdg" + sufix;
@@ -77,7 +77,7 @@ public class BuildGroupConfigTest extends UITest {
     }
 
     @Test
-    public void jdg7Configuration() {
+    public void jdg7() {
 
         // Build Group Config
         buildName = "jdg" + sufix;
@@ -146,13 +146,13 @@ public class BuildGroupConfigTest extends UITest {
     }
 
     @Test
-    public void ssoConfiguration() {
+    public void sso() {
 
         createSSOConfiguration("1.9.0.Final-redhat", "keycloak-1.9.0.Final-redhat");
     }
 
     @Test
-    public void sso19xConfiguration() {
+    public void sso19x() {
 
         createSSOConfiguration("1.9.x-redhat", "keycloak-1.9.x-redhat");
     }

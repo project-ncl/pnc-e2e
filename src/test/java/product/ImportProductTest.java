@@ -15,7 +15,7 @@ import ui.UITest;
 public class ImportProductTest extends UITest {
 
     @Test
-    public void pncSimpleProjectImport() {
+    public void pncSimpleProject() {
 
         importConfig("pnc-simple-test", "1.0", "PNC Simple Test",
                 "https://github.com/project-ncl/pnc-simple-test-project.git",
@@ -24,36 +24,28 @@ public class ImportProductTest extends UITest {
     }
 
     @Test
-    public void ssoImport() {
+    public void sso() {
 
         ssoConfig("keycloak-1.9.x-redhat");
     }
 
     @Test
-    public void sso190Import() {
+    public void sso190() {
 
         ssoConfig("1.9.0.Final-redhat");
     }
 
-    public void ssoConfig(String branch) {
-
-        importConfig("keycloak", "1.9", "RH SSO",
-                "http://git.app.eng.bos.redhat.com/git/keycloak-prod.git",
-                branch,
-                "mvn clean deploy -Pdistribution -DskipTests=true");
-    }
-
     @Test
-    public void jdgImport() {
+    public void jdg() {
 
         importConfig("jdg-infinispan", "7.0", "JDG Infinispan",
                 "http://git.app.eng.bos.redhat.com/infinispan/infinispan.git",
-                "JDG_7.0.0.ER4",
+                "JDG_7.0.0.ER4_pnc_wa_4",
                 "mvn clean deploy -Pdistribution -DskipTests=true");
     }
 
     @Test
-    public void fabricImport() {
+    public void fabric8() {
 
         importConfig("fabric8", "8.0", "Fabric8",
                 "https://github.com/fabric8io/fabric8.git",
@@ -62,7 +54,7 @@ public class ImportProductTest extends UITest {
     }
 
     @Test
-    public void keycloakImport() {
+    public void keycloak() {
 
         importConfig("keycloak", "1.9", "Keycloak",
                 "https://github.com/keycloak/keycloak.git",
@@ -71,12 +63,20 @@ public class ImportProductTest extends UITest {
     }
 
     @Test
-    public void pncImport() {
+    public void pnc() {
 
         importConfig("pnc-ncl", "1.0", "PNC NCL",
                 "https://github.com/project-ncl/pnc.git",
                 "master",
                 "mvn clean deploy -DskipTests=true");
+    }
+
+    private void ssoConfig(String branch) {
+
+        importConfig("keycloak", "1.9", "RH SSO",
+                "http://git.app.eng.bos.redhat.com/git/keycloak-prod.git",
+                branch,
+                "mvn clean deploy -Pdistribution -DskipTests=true");
     }
 
     private void importConfig(String... param) {
