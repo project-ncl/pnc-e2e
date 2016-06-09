@@ -148,41 +148,8 @@ public class BuildGroupConfigTest extends UITest {
     @Test
     public void sso() {
 
-        createSSOConfiguration("1.9.0.Final-redhat", "keycloak-1.9.0.Final-redhat");
-    }
-
-    @Test
-    public void sso19x() {
-
-        createSSOConfiguration("1.9.x-redhat", "keycloak-1.9.x-redhat");
-    }
-
-    private void createBuildGroupConfiguration(String... param) {
-
         // Build Group Config
-        buildName = param[0] + sufix;
-        buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
-        buildGroupConfig.createBuildGroupConfig();
-        assertLinkExists(buildName);
-
-        // PNC Test simple
-        new ProjectPageOperator(param[0]).createProject(param[0] + " project");
-        String configName = param[1] + sufix;
-        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(configName);
-        config.createBuildConfig();
-        config.setProject(param[0]);
-        config.setScmUrl(param[2]);
-        config.setScmRevision(param[3]);
-        config.setBuildScript(param[4]);
-        config.setDefaultConfigEnvironment();
-        config.setBuildConfigGroup(buildName);
-        config.submit();
-    }
-
-    private void createSSOConfiguration(String revision, String name) {
-
-        // Build Group Config
-        buildName = "rh-sso" + sufix;
+        buildName = "keycloak" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
         assertLinkExists(buildName);
@@ -232,15 +199,51 @@ public class BuildGroupConfigTest extends UITest {
         // RH-SSO
         String keycloakProject = "keycloak";
         new ProjectPageOperator(keycloakProject).createProject("Keycloak project");
-        String keycloakName = name + sufix;
+        String keycloakName = "keycloak-1.9.x-redhat" + sufix;
         config = new BuildConfigurationPageOperator(keycloakName);
         config.createBuildConfig();
         config.setProject(keycloakProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/git/keycloak-prod.git");
-        config.setScmRevision(revision);
+        config.setScmRevision("1.9.x-redhat");
         config.setBuildScript("mvn clean deploy -Pdistribution -DskipTests=true");
         config.setDefaultConfigEnvironment();
         config.setDependencies(liquibaseName, twitter4jName, zxingName);
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+
+    }
+
+    @Test
+    public void sso190() {
+
+        createBuildGroupConfiguration("keycloak", "keycloak-1.9.0.Final-redhat",
+                "http://git.app.eng.bos.redhat.com/git/keycloak-prod.git",
+                "1.9.0.Final-redhat",
+                "mvn clean deploy -Pdistribution "
+                + "-Drepo-reporting-removal=true "
+                + "-DskipTests "
+                + "-Denforce-skip=false "
+                + "-Dversion.suffix=redhat-1");
+    }
+
+    private void createBuildGroupConfiguration(String... param) {
+
+        // Build Group Config
+        buildName = param[0] + sufix;
+        buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
+        buildGroupConfig.createBuildGroupConfig();
+        assertLinkExists(buildName);
+
+        // PNC Test simple
+        new ProjectPageOperator(param[0]).createProject(param[0] + " project");
+        String configName = param[1] + sufix;
+        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(configName);
+        config.createBuildConfig();
+        config.setProject(param[0]);
+        config.setScmUrl(param[2]);
+        config.setScmRevision(param[3]);
+        config.setBuildScript(param[4]);
+        config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
         config.submit();
     }
