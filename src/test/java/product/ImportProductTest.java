@@ -24,18 +24,6 @@ public class ImportProductTest extends UITest {
     }
 
     @Test
-    public void sso() {
-
-        ssoConfig("1.9.x-redhat");
-    }
-
-    @Test
-    public void sso190() {
-
-        ssoConfig("1.9.0.Final-redhat");
-    }
-
-    @Test
     public void jdg() {
 
         importConfig("jdg-infinispan", "7.0", "JDG Infinispan",
@@ -89,12 +77,26 @@ public class ImportProductTest extends UITest {
                 "mvn clean deploy");
     }
 
-    private void ssoConfig(String branch) {
+    @Test
+    public void sso() {
 
         importConfig("keycloak", "1.9", "RH SSO",
                 "http://git.app.eng.bos.redhat.com/git/keycloak-prod.git",
-                branch,
+                "1.9.x-redhat",
                 "mvn clean deploy -Pdistribution -DskipTests=true");
+    }
+
+    @Test
+    public void sso190() {
+
+        importConfig("keycloak", "1.9", "RH SSO",
+                "http://git.app.eng.bos.redhat.com/git/keycloak-prod.git",
+                "1.9.0.Final-redhat",
+                "mvn clean deploy -Pdistribution "
+                + "-Drepo-reporting-removal=true "
+                + "-DskipTests "
+                + "-Denforce-skip=false "
+                + "-Dversion.suffix=redhat-1");
     }
 
     private void importConfig(String... param) {
