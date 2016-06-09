@@ -80,6 +80,15 @@ public class ImportProductTest extends UITest {
                 "mvn clean deploy -DskipTests=true");
     }
 
+    @Test
+    public void antlr() {
+
+        importConfig("antlr", "2.7", "Antlr",
+                "http://git.app.eng.bos.redhat.com/git/antlr2.git",
+                "9f6163d",
+                "mvn clean deploy");
+    }
+
     private void ssoConfig(String branch) {
 
         importConfig("keycloak", "1.9", "RH SSO",
