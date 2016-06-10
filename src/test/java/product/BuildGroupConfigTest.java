@@ -65,30 +65,6 @@ public class BuildGroupConfigTest extends UITest {
         config.setDependencies(consoleName);
         config.setBuildConfigGroup(buildName);
         config.submit();
-    }
-
-    @Test
-    public void jdg7() {
-
-        // Build Group Config
-        buildName = "jdg" + sufix;
-        buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
-        buildGroupConfig.createBuildGroupConfig();
-        assertLinkExists(buildName);
-
-        // infinispan
-        String infinispanProject = "jdg-infinispan";
-        new ProjectPageOperator(infinispanProject).createProject("JDG Infinispan");
-        String infinispanName = infinispanProject + sufix;
-        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(infinispanName);
-        config.createBuildConfig();
-        config.setProject(infinispanProject);
-        config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/infinispan.git");
-        config.setScmRevision("JDG_7.0.0.ER4_pnc_wa_2");
-        config.setBuildScript("# mvn dependency:tree > deptree\nsleep 6000\n# mvn -X clean deploy -DskipTests");
-        config.setDefaultConfigEnvironment();
-        config.setBuildConfigGroup(buildName);
-        config.submit();
 
         // spark
         String sparkProject = "jdg-spark";
