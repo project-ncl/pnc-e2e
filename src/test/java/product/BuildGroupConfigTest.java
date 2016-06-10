@@ -205,11 +205,56 @@ public class BuildGroupConfigTest extends UITest {
         buildGroupConfig.createBuildGroupConfig();
         assertLinkExists(buildName);
 
+        // liquibase
+        String liquibaseProject = "liquibase";
+        new ProjectPageOperator(liquibaseProject).createProject("Liquidbase project");
+        String liquibaseName = "liquibase-parent-3.4.1.redhat" + sufix;
+        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(liquibaseName);
+        config.createBuildConfig();
+        config.setProject(liquibaseProject);
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/jboss-mobile/liquibase.git");
+        config.setScmRevision("liquibase-parent-3.4.1");
+        config.setBuildScript("mvn -P'!rpm' -pl '!liquibase-debian' clean deploy -DskipTests");
+        config.setDefaultConfigEnvironment();
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+
+        // twitter4j
+        String twitter4jProject = "twitter4j";
+        new ProjectPageOperator(twitter4jProject).createProject("Twitter4j project");
+        String twitter4jName = "twitter4j-4.0.4.redhat" + sufix;
+        config = new BuildConfigurationPageOperator(twitter4jName);
+        config.createBuildConfig();
+        config.setProject(twitter4jProject);
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/twitter4j.git");
+        config.setScmRevision("4.0.4");
+        config.setBuildScript("mvn clean deploy -DskipTests");
+        config.setDefaultConfigEnvironment();
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+
+        // zxing
+        String zxingProject = "zxing";
+        new ProjectPageOperator(zxingProject).createProject("ZXing project");
+        String zxingName = "zxing-parent-3.2.1.redhat" + sufix;
+        config = new BuildConfigurationPageOperator(zxingName);
+        config.createBuildConfig();
+        config.setProject(zxingProject);
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/zxing.git");
+        config.setScmRevision("zxing-3.2.1");
+        config.setBuildScript("mvn clean deploy -DskipTests "
+                + "-Drat.numUnapprovedLicenses=2 "
+                + "-Dplugin-removal=org.codehaus.mojo:clirr-maven-plugin "
+                + "-DdependencyExclusion.com.beust:jcommander@*=1.48.0.redhat-1");
+        config.setDefaultConfigEnvironment();
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+
         // Keycloak
         String keycloakProject = "keycloak";
         new ProjectPageOperator(keycloakProject).createProject("Keycloak project");
         String keycloakName = "keycloak-parent-1.9.0.Final-redhat" + sufix;
-        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(keycloakName);
+        config = new BuildConfigurationPageOperator(keycloakName);
         config.createBuildConfig();
         config.setProject(keycloakProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/git/keycloak-prod.git");
@@ -220,6 +265,7 @@ public class BuildGroupConfigTest extends UITest {
                 + "-Denforce-skip=false "
                 + "-Dversion.suffix=redhat-1");
         config.setDefaultConfigEnvironment();
+        config.setDependencies(liquibaseName, twitter4jName, zxingName);
         config.setBuildConfigGroup(buildName);
         config.submit();
     }
