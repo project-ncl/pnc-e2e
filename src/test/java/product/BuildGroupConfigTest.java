@@ -25,15 +25,6 @@ public class BuildGroupConfigTest extends UITest {
     }
 
     @Test
-    public void pncSimpleProject() {
-
-        createBuildGroupConfiguration("pnc-simple-test", "pnc-simple-test-SNAPSHOT",
-                "https://github.com/project-ncl/pnc-simple-test-project.git",
-                "master",
-                "mvn clean deploy");
-    }
-
-    @Test
     public void jdg() {
 
         // Build Group Config
@@ -229,23 +220,29 @@ public class BuildGroupConfigTest extends UITest {
         config.submit();
     }
 
-    private void createBuildGroupConfiguration(String... param) {
+    @Test
+    public void sso190() {
 
         // Build Group Config
-        buildName = param[0] + sufix;
+        buildName = "keycloak" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
         assertLinkExists(buildName);
 
-        // PNC Test simple
-        new ProjectPageOperator(param[0]).createProject(param[0] + " project");
-        String configName = param[1] + sufix;
-        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(configName);
+        // Keycloak
+        String keycloakProject = "keycloak";
+        new ProjectPageOperator(keycloakProject).createProject("Keycloak project");
+        String keycloakName = "keycloak-parent-1.9.0.Final-redhat" + sufix;
+        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(keycloakName);
         config.createBuildConfig();
-        config.setProject(param[0]);
-        config.setScmUrl(param[2]);
-        config.setScmRevision(param[3]);
-        config.setBuildScript(param[4]);
+        config.setProject(keycloakProject);
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/keycloak-prod.git");
+        config.setScmRevision("1.9.0.Final-redhat");
+        config.setBuildScript("mvn clean deploy -Pdistribution "
+                + "-Drepo-reporting-removal=true "
+                + "-DskipTests "
+                + "-Denforce-skip=false "
+                + "-Dversion.suffix=redhat-1");
         config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
         config.submit();
