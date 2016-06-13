@@ -191,7 +191,7 @@ public class BuildGroupConfigTest extends UITest {
         config.setScmRevision("1.9.x-redhat");
         config.setBuildScript("mvn clean deploy -Pdistribution -DskipTests=true");
         config.setDefaultConfigEnvironment();
-        config.setDependencies(freemarkerName, liquibaseName, twitter4jName, zxingName);
+        config.setDependencies(liquibaseName, twitter4jName, zxingName);
         config.setBuildConfigGroup(buildName);
         config.submit();
     }
