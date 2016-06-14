@@ -110,6 +110,70 @@ public class BuildGroupConfigTest extends UITest {
         config.setDependencies(infinispanName, camelName);
         config.setBuildConfigGroup(buildName);
         config.submit();
+
+        // hadoop
+        String hadoopProject = "jdg-hadoop";
+        new ProjectPageOperator(hadoopProject).createProject("JDG Hadoop");
+        String hadoopName = hadoopProject + sufix;
+        config = new BuildConfigurationPageOperator(hadoopName);
+        config.createBuildConfig();
+        config.setProject(hadoopProject);
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-hadoop.git");
+        config.setScmRevision("JDG_7.0.0.ER4");
+        config.setBuildScript("mvn clean deploy -DskipTests");
+        config.setDefaultConfigEnvironment();
+        config.setDependencies(infinispanName);
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+
+        // cassandra
+        String cassandraProject = "jdg-cachestore-cassandra";
+        new ProjectPageOperator(cassandraProject).createProject("JDG Cachestore Cassandra");
+        String cassandraName = cassandraProject + sufix;
+        config = new BuildConfigurationPageOperator(cassandraName);
+        config.createBuildConfig();
+        config.setProject(cassandraProject);
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-cachestore-cassandra.git");
+        config.setScmRevision("JDG_7.0.0.ER4");
+        config.setBuildScript("mvn clean deploy -DskipTests");
+        config.setDefaultConfigEnvironment();
+        config.setDependencies(infinispanName);
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+
+        // archetype
+        String archetypeProject = "jdg-cachestore-archetype";
+        new ProjectPageOperator(archetypeProject).createProject("JDG custom cache store archetype");
+        String archetypeName = archetypeProject + sufix;
+        config = new BuildConfigurationPageOperator(archetypeName);
+        config.createBuildConfig();
+        config.setProject(archetypeProject);
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-cachestore-archetype.git");
+        config.setScmRevision("JDG_7.0.0.ER4");
+        config.setBuildScript("mvn clean deploy -DskipTests");
+        config.setDefaultConfigEnvironment();
+        config.setDependencies(infinispanName);
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+
+        // jsClient
+        String jsClientProject = "jdg-js-client";
+        new ProjectPageOperator(jsClientProject).createProject("JDG JS client");
+        String jsClientName = jsClientProject + sufix;
+        config = new BuildConfigurationPageOperator(jsClientName);
+        config.createBuildConfig();
+        config.setProject(jsClientProject);
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-js-client.git");
+        config.setScmRevision("JDG_7.0.0.ER4");
+        config.setBuildScript("export NVM_NODEJS_ORG_MIRROR=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node\n"
+                + "mvn clean deploy "
+                + "-DnodeDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/ "
+                + "-DnpmDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/npm/ "
+                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49152");
+        config.setDefaultConfigEnvironment();
+        config.setDependencies(infinispanName);
+        config.setBuildConfigGroup(buildName);
+        config.submit();
     }
 
     @Test
