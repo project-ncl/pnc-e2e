@@ -59,7 +59,7 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(infinispanProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/infinispan.git");
-        config.setScmRevision("JDG_7.0.0.ER4_pnc_wa_4");
+        config.setScmRevision("JDG_7.0.0.ER4_pnc_wa_5");
         config.setBuildScript("mvn clean deploy -DskipTests -Pdistribution");
         config.setDefaultConfigEnvironment();
         config.setDependencies(consoleName);
@@ -89,7 +89,7 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(camelProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-camel.git");
-        config.setScmRevision("JDG_7.0.0.ER4");
+        config.setScmRevision("JDG_7.0.0.ER4_pnc_wa_1");
         config.setBuildScript("mvn clean javadoc:javadoc deploy -DskipTests");
         config.setDefaultConfigEnvironment();
         config.setDependencies(infinispanName);
