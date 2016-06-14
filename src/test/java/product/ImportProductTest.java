@@ -60,15 +60,6 @@ public class ImportProductTest extends UITest {
     }
 
     @Test
-    public void pnc09() {
-
-        importConfig("pnc-ncl", "1.0", "PNC NCL",
-                "https://github.com/project-ncl/pnc.git",
-                "v0.9",
-                "mvn clean deploy -DskipTests=true");
-    }
-
-    @Test
     public void antlr() {
 
         importConfig("antlr", "2.7", "Antlr",
@@ -82,21 +73,14 @@ public class ImportProductTest extends UITest {
 
         importConfig("keycloak", "1.9", "RH SSO",
                 "http://git.app.eng.bos.redhat.com/git/keycloak-prod.git",
-                "1.9.x-redhat",
-                "mvn clean deploy -Pdistribution -DskipTests=true");
-    }
-
-    @Test
-    public void sso190() {
-
-        importConfig("keycloak", "1.9", "RH SSO",
-                "http://git.app.eng.bos.redhat.com/git/keycloak-prod.git",
-                "1.9.0.Final-redhat",
+                "1.9.0.CR1",
                 "mvn clean deploy -Pdistribution "
-                + "-Drepo-reporting-removal=true "
-                + "-DskipTests "
+                + "-Dmavensign.sign.skip=* "
+                + "-Dmavensign.expand.skip=* "
                 + "-Denforce-skip=false "
-                + "-Dversion.suffix=redhat-1");
+                + "-Dversion.suffix=redhat-1 "
+                + "-Drepo-reporting-removal=true "
+                + "-DskipTests");
     }
 
     private void importConfig(String... param) {
