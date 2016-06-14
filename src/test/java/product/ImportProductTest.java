@@ -28,8 +28,8 @@ public class ImportProductTest extends UITest {
 
         importConfig("jdg-infinispan", "7.0", "JDG Infinispan",
                 "http://git.app.eng.bos.redhat.com/infinispan/infinispan.git",
-                "JDG_7.0.0.ER4_pnc_wa_4",
-                "mvn clean deploy -Pdistribution -DskipTests=true");
+                "JDG_7.0.0.ER4_pnc_wa_5",
+                "mvn clean deploy -DskipTests -Pdistribution");
     }
 
     @Test
