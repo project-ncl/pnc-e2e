@@ -1,6 +1,5 @@
 package product;
 
-import operators.base.BuildOperator;
 import operators.base.RefreshOperator;
 import operators.configurations.BuildConfigurationSetPageOperator;
 import operators.products.ProductPageOperator;
@@ -72,15 +71,9 @@ public class ImportProductTest extends UITest {
     public void sso() {
 
         importConfig("keycloak", "1.9", "RH SSO",
-                "http://git.app.eng.bos.redhat.com/git/keycloak-prod.git",
-                "1.9.0.CR1",
-                "mvn clean deploy -Pdistribution "
-                + "-Dmavensign.sign.skip=* "
-                + "-Dmavensign.expand.skip=* "
-                + "-Denforce-skip=false "
-                + "-Dversion.suffix=redhat-1 "
-                + "-Drepo-reporting-removal=true "
-                + "-DskipTests");
+                "http://git.engineering.redhat.com/git/users/pkralik/keycloak-prod.git",
+                "1.9.0.Final-redhat",
+                "mvn clean deploy -Pdistribution");
     }
 
     private void importConfig(String... param) {
