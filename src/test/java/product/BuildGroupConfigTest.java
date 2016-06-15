@@ -356,7 +356,9 @@ public class BuildGroupConfigTest extends UITest {
         config.setProject(zxingProject);
         config.setScmUrl("https://github.com/zxing/zxing.git");
         config.setScmRevision("zxing-3.2.1");
-        config.setBuildScript("mvn clean deploy -DskipTests -Drat.numUnapprovedLicenses=2");
+        config.setBuildScript("mvn clean deploy -DskipTests -Drat.numUnapprovedLicenses=2 "
+                + "-Dplugin-removal=org.codehaus.mojo:clirr-maven-plugin "
+                + "-DdependencyExclusion.com.beust:jcommander@*=1.48.0.redhat-1");
         config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
         config.submit();
