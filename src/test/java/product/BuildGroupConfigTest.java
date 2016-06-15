@@ -234,15 +234,9 @@ public class BuildGroupConfigTest extends UITest {
         config = new BuildConfigurationPageOperator(keycloakName);
         config.createBuildConfig();
         config.setProject(keycloakProject);
-        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/keycloak-prod.git");
+        config.setScmUrl("http://git.engineering.redhat.com/git/users/pkralik/keycloak-prod.git");
         config.setScmRevision("1.9.0.CR1");
-        config.setBuildScript("mvn clean deploy -Pdistribution "
-                + "-Dmavensign.sign.skip=* "
-                + "-Dmavensign.expand.skip=* "
-                + "-Denforce-skip=false "
-                + "-Dversion.suffix=redhat-1 "
-                + "-Drepo-reporting-removal=true "
-                + "-DskipTests");
+        config.setBuildScript("mvn clean deploy -Pdistribution");
         config.setDefaultConfigEnvironment();
         config.setDependencies(liquibaseName, twitter4jName, zxingName);
         config.setBuildConfigGroup(buildName);
@@ -250,7 +244,7 @@ public class BuildGroupConfigTest extends UITest {
     }
 
     @Test
-    public void ssoPmeFile() {
+    public void sso190() {
 
         // Build Group Config
         buildName = "keycloak" + sufix;
@@ -310,6 +304,74 @@ public class BuildGroupConfigTest extends UITest {
         config.setScmUrl("http://git.engineering.redhat.com/git/users/pkralik/keycloak-prod.git");
         config.setScmRevision("1.9.0.Final-redhat");
         config.setBuildScript("mvn clean deploy -Pdistribution");
+        config.setDefaultConfigEnvironment();
+        config.setDependencies(liquibaseName, twitter4jName, zxingName);
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+    }
+
+    @Test
+    public void sso19x() {
+
+        // Build Group Config
+        buildName = "keycloak" + sufix;
+        buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
+        buildGroupConfig.createBuildGroupConfig();
+        assertLinkExists(buildName);
+
+        // liquibase
+        String liquibaseProject = "liquibase";
+        new ProjectPageOperator(liquibaseProject).createProject("Liquidbase project");
+        String liquibaseName = "liquibase-parent-3.4.1.redhat" + sufix;
+        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(liquibaseName);
+        config.createBuildConfig();
+        config.setProject(liquibaseProject);
+        config.setScmUrl("https://github.com/liquibase/liquibase.git");
+        config.setScmRevision("liquibase-parent-3.4.1");
+        config.setBuildScript("mvn -P'!rpm' -pl '!liquibase-debian' clean deploy -DskipTests");
+        config.setDefaultConfigEnvironment();
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+
+        // twitter4j
+        String twitter4jProject = "twitter4j";
+        new ProjectPageOperator(twitter4jProject).createProject("Twitter4j project");
+        String twitter4jName = "twitter4j-4.0.4.redhat" + sufix;
+        config = new BuildConfigurationPageOperator(twitter4jName);
+        config.createBuildConfig();
+        config.setProject(twitter4jProject);
+        config.setScmUrl("https://github.com/yusuke/twitter4j.git");
+        config.setScmRevision("4.0.4");
+        config.setBuildScript("mvn clean deploy -DskipTests");
+        config.setDefaultConfigEnvironment();
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+
+        // zxing
+        String zxingProject = "zxing";
+        new ProjectPageOperator(zxingProject).createProject("ZXing project");
+        String zxingName = "zxing-parent-3.2.1.redhat" + sufix;
+        config = new BuildConfigurationPageOperator(zxingName);
+        config.createBuildConfig();
+        config.setProject(zxingProject);
+        config.setScmUrl("https://github.com/zxing/zxing.git");
+        config.setScmRevision("zxing-3.2.1");
+        config.setBuildScript("mvn clean deploy -DskipTests -Drat.numUnapprovedLicenses=2");
+        config.setDefaultConfigEnvironment();
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+
+        // Keycloak
+        String keycloakProject = "keycloak";
+        new ProjectPageOperator(keycloakProject).createProject("Keycloak project");
+        String keycloakName = "keycloak-parent-1.9.x-redhat" + sufix;
+        config = new BuildConfigurationPageOperator(keycloakName);
+        config.createBuildConfig();
+        config.setProject(keycloakProject);
+        config.setScmUrl("http://git.engineering.redhat.com/git/users/pkralik/keycloak-prod.git");
+        config.setScmRevision("1.9.x-redhat");
+        config.setBuildScript("mvn clean deploy -Pdistribution "
+                + "-pl '!adapters/oidc/jetty/jetty9.1' -pl '!adapters/oidc/jetty/jetty9.2' -pl '!adapters/oidc/spring-boot' -pl '!adapters/oidc/spring-security' -pl '!adapters/oidc/tomcat/tomcat6' -pl '!adapters/oidc/tomcat/tomcat7' -pl '!adapters/oidc/tomcat/tomcat8' -pl '!adapters/oidc/wildfly/wf8-subsystem' -pl '!adapters/saml/jetty/jetty8.1' -pl '!adapters/saml/jetty/jetty9.1' -pl '!adapters/saml/jetty/jetty9.2' -pl '!adapters/saml/tomcat/tomcat6' -pl '!adapters/saml/tomcat/tomcat7' -pl '!adapters/saml/tomcat/tomcat8' -pl '!distribution/adapters/as7-eap6-adapter/as7-adapter-zip' -pl '!distribution/adapters/tomcat6-adapter-zip' -pl '!distribution/adapters/tomcat7-adapter-zip' -pl '!distribution/adapters/tomcat8-adapter-zip' -pl '!distribution/adapters/jetty81-adapter-zip' -pl '!distribution/adapters/jetty91-adapter-zip' -pl '!distribution/adapters/jetty92-adapter-zip' -pl '!distribution/adapters/wf8-adapter/wf8-adapter-zip' -pl '!distribution/adapters/wf8-adapter/wf8-modules' -pl '!distribution/feature-packs/adapter-feature-pack' -pl '!distribution/demo-dist' -pl '!distribution/docs-dist' -pl '!distribution/examples-dist' -pl '!distribution/proxy-dist' -pl '!distribution/saml-adapters/as7-eap6-adapter/as7-adapter-zip' -pl '!distribution/saml-adapters/tomcat6-adapter-zip' -pl '!distribution/saml-adapters/tomcat7-adapter-zip' -pl '!distribution/saml-adapters/tomcat8-adapter-zip' -pl '!distribution/saml-adapters/jetty81-adapter-zip' -pl '!distribution/saml-adapters/jetty92-adapter-zip' -pl '!model/mongo' -pl '!proxy/proxy-server' -pl '!proxy/launcher/' -pl '!testsuite/proxy' -pl '!testsuite/tomcat6' -pl '!testsuite//tomcat7' -pl '!testsuite/tomcat8' -pl '!testsuite/jetty/jetty81' -pl '!testsuite/jetty/jetty91' -pl '!testsuite/jetty/jetty92' -pl '!testsuite/performance' -pl '!testsuite/stress'");
         config.setDefaultConfigEnvironment();
         config.setDependencies(liquibaseName, twitter4jName, zxingName);
         config.setBuildConfigGroup(buildName);
