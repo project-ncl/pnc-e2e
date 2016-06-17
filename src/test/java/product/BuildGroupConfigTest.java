@@ -31,7 +31,6 @@ public class BuildGroupConfigTest extends UITest {
         buildName = "jdg" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
-        assertLinkExists(buildName);
 
         // jdg-management-console
         String consoleProject = "jdg-management-console";
@@ -183,7 +182,6 @@ public class BuildGroupConfigTest extends UITest {
         buildName = "keycloak" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
-        assertLinkExists(buildName);
 
         // liquibase
         String liquibaseProject = "liquibase";
@@ -250,7 +248,6 @@ public class BuildGroupConfigTest extends UITest {
         buildName = "keycloak" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
-        assertLinkExists(buildName);
 
         // liquibase
         String liquibaseProject = "liquibase";

@@ -107,5 +107,6 @@ public class BuildConfigurationPageOperator extends Operator {
     public void submit() {
 
         new SubmitOperator().submit();
+        waitUntilName(name);
     }
 }

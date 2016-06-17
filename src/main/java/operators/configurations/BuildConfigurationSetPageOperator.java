@@ -57,5 +57,6 @@ public class BuildConfigurationSetPageOperator extends Operator {
         new ButtonOperator(Elements.CREATE_CONFIGURATION_SET_BUTTON).clickButton();
         new TextInputOperator(Elements.BUILD_CONFIGURATION_SET_INPUT).insertInput(name);
         new SubmitOperator().submit();
+        waitUntilLink(name);
     }
 }
