@@ -235,7 +235,7 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(keycloakProject);
         config.setScmUrl("http://git.engineering.redhat.com/git/users/pkralik/keycloak-prod.git");
-        config.setScmRevision("1.9.0.CR1");
+        config.setScmRevision("1.9.0.CR1-pnc");
         config.setBuildScript("mvn clean deploy -Pdistribution");
         config.setDefaultConfigEnvironment();
         config.setDependencies(liquibaseName, twitter4jName, zxingName);
