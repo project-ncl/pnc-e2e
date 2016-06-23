@@ -18,34 +18,12 @@ public class ImportProductTest extends UITest {
 
         importConfig("jdg-infinispan", "7.0", "JDG Infinispan",
                 "http://git.app.eng.bos.redhat.com/infinispan/infinispan.git",
-                "JDG_7.0.0.ER4_pnc_wa_5",
-                "mvn clean deploy -DskipTests -Pdistribution");
-    }
-
-    @Test
-    public void jdgConsole() {
-
-        importConfig("jdg-management-console", "7.0", "JDG Management Console",
-                "http://git.app.eng.bos.redhat.com/infinispan/jdg-management-console.git",
-                "JDG_7.0.0.ER4_pnc_wa__4",
-                "export NVM_NODEJS_ORG_MIRROR=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node\n\n"
-                + "mvn clean deploy "
-                + "-DnodeDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/ "
-                + "-DnpmDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/npm/ "
-                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49152");
-    }
-
-    @Test
-    public void jdg7er8() {
-
-        importConfig("jdg-infinispan", "7.0", "JDG Infinispan",
-                "http://git.app.eng.bos.redhat.com/infinispan/infinispan.git",
                 "JDG_7.0.0.ER8",
                 "mvn clean deploy -DskipTests -Pdistribution");
     }
 
     @Test
-    public void jdgConsole7er8() {
+    public void jdgConsole() {
 
         importConfig("jdg-management-console", "7.0", "JDG Management Console",
                 "http://git.app.eng.bos.redhat.com/infinispan/jdg-management-console.git",
