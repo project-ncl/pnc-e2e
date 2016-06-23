@@ -310,6 +310,29 @@ public class BuildGroupConfigTest extends UITest {
         config.submit();
     }
 
+    @Test
+    public void eap() {
+
+        // Build Group Config
+        buildName = "eap7" + sufix;
+        buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
+        buildGroupConfig.createBuildGroupConfig();
+
+        // EAP7
+        String keycloakProject = "eap7";
+        new ProjectPageOperator(keycloakProject).createProject("JBoss EAP 7 project");
+        String keycloakName = "jboss-eap-parent-7.0.1.GA-redhat" + sufix;
+        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(keycloakName);
+        config.createBuildConfig();
+        config.setProject(keycloakProject);
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/wildfly/wildfly.git");
+        config.setScmRevision("eap-7.0.x");
+        config.setBuildScript("mvn clean deploy -Prelease -DskipTests=true -Dversion.incremental.suffix=redhat");
+        config.setDefaultConfigEnvironment();
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+    }
+
     @After
     public void buildGroupConfig() {
 
