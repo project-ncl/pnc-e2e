@@ -58,9 +58,9 @@ public class ImportProductTest extends UITest {
     public void eap() {
 
         importConfig("eap7", "7.0", "JBoss EAP 7",
-                "http://git.app.eng.bos.redhat.com/git/wildfly/wildfly.git",
+                "http://git.engineering.redhat.com/git/users/pkralik/wildfly.git",
                 "eap-7.0.x",
-                "mvn clean deploy -Prelease -DskipTests=true -Dversion.incremental.suffix=redhat");
+                "mvn clean deploy -Prelease");
     }
 
     private void importConfig(String... param) {

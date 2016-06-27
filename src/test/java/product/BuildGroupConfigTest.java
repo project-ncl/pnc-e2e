@@ -325,9 +325,9 @@ public class BuildGroupConfigTest extends UITest {
         BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(keycloakName);
         config.createBuildConfig();
         config.setProject(keycloakProject);
-        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/wildfly/wildfly.git");
+        config.setScmUrl("http://git.engineering.redhat.com/git/users/pkralik/wildfly.git");
         config.setScmRevision("eap-7.0.x");
-        config.setBuildScript("mvn clean deploy -Prelease -DskipTests=true -Dversion.incremental.suffix=redhat");
+        config.setBuildScript("mvn clean deploy -Prelease");
         config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
         config.submit();
