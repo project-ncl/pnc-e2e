@@ -13,6 +13,7 @@ import ui.UITest;
  */
 public class ImportProductTest extends UITest {
 
+    @Test
     public void jdg() {
 
         importConfig("jdg-infinispan", "8.3", "JDG Infinispan",
