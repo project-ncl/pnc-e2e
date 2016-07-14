@@ -36,28 +36,6 @@ public class ImportProductTest extends UITest {
     }
 
     @Test
-    public void jdgER4() {
-
-        importConfig("jdg-infinispan", "8.3", "JDG Infinispan",
-                "http://git.app.eng.bos.redhat.com/infinispan/infinispan.git",
-                "JDG_7.0.0.ER4_pnc_wa_5",
-                "mvn clean deploy -DskipTests -Pdistribution");
-    }
-
-    @Test
-    public void jdgConsoleER4() {
-
-        importConfig("jdg-management-console", "8.3", "JDG Management Console",
-                "http://git.app.eng.bos.redhat.com/infinispan/jdg-management-console.git",
-                "JDG_7.0.0.ER4_pnc_wa__4",
-                "export NVM_NODEJS_ORG_MIRROR=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node\n\n"
-                + "mvn clean deploy "
-                + "-DnpmDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/npm/ "
-                + "-DnodeDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/ "
-                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49162");
-    }
-
-    @Test
     public void sso() {
 
         importConfig("keycloak", "2.0", "RH SSO",
@@ -78,15 +56,6 @@ public class ImportProductTest extends UITest {
     }
 
     @Test
-    public void sso190() {
-
-        importConfig("keycloak", "1.9", "RH SSO",
-                "http://git.engineering.redhat.com/git/users/pkralik/keycloak-prod.git",
-                "1.9.0.Final-redhat",
-                "mvn clean deploy -Pdistribution");
-    }
-
-    @Test
     public void eap() {
 
         importConfig("eap7", "7.0", "JBoss EAP 7",
@@ -101,15 +70,6 @@ public class ImportProductTest extends UITest {
         importConfig("eap7", "7.0", "JBoss EAP 7",
                 "http://git.app.eng.bos.redhat.com/git/wildfly/wildfly.git",
                 "7.0.1.GA-redhat-2",
-                "mvn clean deploy -Prelease -DskipTests=true -Dversion.incremental.suffix=redhat");
-    }
-
-    @Test
-    public void eap700() {
-
-        importConfig("eap7", "7.0", "JBoss EAP 7",
-                "http://git.app.eng.bos.redhat.com/git/wildfly/wildfly.git",
-                "7.0.0.GA-redhat-3",
                 "mvn clean deploy -Prelease -DskipTests=true -Dversion.incremental.suffix=redhat");
     }
 
