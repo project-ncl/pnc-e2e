@@ -27,10 +27,10 @@ public class TextInputDropdownOperator extends Operator {
         WebElement element = getElementByXpath(selectXpath);
         element.findElement(By.name(name)).sendKeys(value);
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (Exception e) {
         }
-        List <WebElement> liElements = element.findElements(By.tagName("li"));
+        List<WebElement> liElements = element.findElements(By.tagName("li"));
         liElements.get(0).click();
     }
 
@@ -45,7 +45,7 @@ public class TextInputDropdownOperator extends Operator {
         String selectXpath = String.format(XPATH_SELECT, name);
         WebElement element = getElementByXpath(selectXpath);
         element.click();
-        List <WebElement> liElements = element.findElements(By.tagName("li"));
-        liElements.get(liElements.size()-1).click();
-    }    
+        List<WebElement> liElements = element.findElements(By.tagName("li"));
+        liElements.get(liElements.size() - 1).click();
+    }
 }
