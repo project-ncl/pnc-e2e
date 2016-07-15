@@ -228,12 +228,12 @@ public class BuildGroupConfigTest extends UITest {
         // Keycloak
         String keycloakProject = "keycloak";
         new ProjectPageOperator(keycloakProject).createProject("Keycloak project");
-        String keycloakName = "keycloak-parent-1.9.0.Final-redhat" + sufix;
+        String keycloakName = "keycloak-parent-1.9.0.Final-redhat-1" + sufix;
         config = new BuildConfigurationPageOperator(keycloakName);
         config.createBuildConfig();
         config.setProject(keycloakProject);
         config.setScmUrl("http://git.engineering.redhat.com/git/users/pkralik/keycloak-prod.git");
-        config.setScmRevision("1.9.0.Final-redhat");
+        config.setScmRevision("1.9.0.Final-redhat-1-pnc");
         config.setBuildScript("mvn clean deploy -Pdistribution");
         config.setDefaultConfigEnvironment();
         config.setDependencies(liquibaseName, twitter4jName, zxingName);
