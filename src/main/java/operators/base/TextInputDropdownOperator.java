@@ -27,7 +27,7 @@ public class TextInputDropdownOperator extends Operator {
         WebElement element = getElementByXpath(selectXpath);
         element.findElement(By.name(name)).sendKeys(value);
         try {
-            Thread.sleep(5000);
+            Thread.sleep(8000);
         } catch (Exception e) {
         }
         List<WebElement> liElements = element.findElements(By.tagName("li"));
