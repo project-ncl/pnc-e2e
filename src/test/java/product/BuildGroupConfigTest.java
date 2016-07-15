@@ -106,7 +106,6 @@ public class BuildGroupConfigTest extends UITest {
         config.setScmRevision("JDG_7.0.0.ER4");
         config.setBuildScript("mvn clean deploy -DskipTests -Pdistribution");
         config.setDefaultConfigEnvironment();
-        config.setDependencies(infinispanName);
         config.setDependencies(camelName);
         config.setBuildConfigGroup(buildName);
         config.submit();
