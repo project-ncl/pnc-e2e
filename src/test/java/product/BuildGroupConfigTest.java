@@ -76,7 +76,7 @@ public class BuildGroupConfigTest extends UITest {
         config.setScmRevision("JDG_7.0.0.ER4");
         config.setBuildScript("mvn clean deploy -DskipTests");
         config.setDefaultConfigEnvironment();
-        config.setDependencies(infinispanName, consoleName);
+        config.setDependencies(infinispanName);
         config.setBuildConfigGroup(buildName);
         config.submit();
 
@@ -91,7 +91,7 @@ public class BuildGroupConfigTest extends UITest {
         config.setScmRevision("JDG_7.0.0.ER4_pnc_wa_1");
         config.setBuildScript("mvn clean javadoc:javadoc deploy -DskipTests");
         config.setDefaultConfigEnvironment();
-        config.setDependencies(infinispanName, consoleName);
+        config.setDependencies(infinispanName);
         config.setBuildConfigGroup(buildName);
         config.submit();
 
@@ -106,7 +106,8 @@ public class BuildGroupConfigTest extends UITest {
         config.setScmRevision("JDG_7.0.0.ER4");
         config.setBuildScript("mvn clean deploy -DskipTests -Pdistribution");
         config.setDefaultConfigEnvironment();
-        config.setDependencies(infinispanName, consoleName, camelName);
+        config.setDependencies(infinispanName);
+        config.setDependencies(camelName);
         config.setBuildConfigGroup(buildName);
         config.submit();
 
@@ -121,7 +122,7 @@ public class BuildGroupConfigTest extends UITest {
         config.setScmRevision("JDG_7.0.0.ER4");
         config.setBuildScript("mvn clean deploy -DskipTests");
         config.setDefaultConfigEnvironment();
-        config.setDependencies(infinispanName, consoleName);
+        config.setDependencies(infinispanName);
         config.setBuildConfigGroup(buildName);
         config.submit();
 
@@ -136,7 +137,7 @@ public class BuildGroupConfigTest extends UITest {
         config.setScmRevision("JDG_7.0.0.ER4");
         config.setBuildScript("mvn clean deploy -DskipTests");
         config.setDefaultConfigEnvironment();
-        config.setDependencies(infinispanName, consoleName);
+        config.setDependencies(infinispanName);
         config.setBuildConfigGroup(buildName);
         config.submit();
 
@@ -151,7 +152,7 @@ public class BuildGroupConfigTest extends UITest {
         config.setScmRevision("JDG_7.0.0.ER4");
         config.setBuildScript("mvn clean deploy -DskipTests");
         config.setDefaultConfigEnvironment();
-        config.setDependencies(infinispanName, consoleName);
+        config.setDependencies(infinispanName);
         config.setBuildConfigGroup(buildName);
         config.submit();
 
@@ -170,7 +171,7 @@ public class BuildGroupConfigTest extends UITest {
                 + "-DnodeDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/ "
                 + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49162");
         config.setDefaultConfigEnvironment();
-        config.setDependencies(infinispanName, consoleName);
+        config.setDependencies(infinispanName);
         config.setBuildConfigGroup(buildName);
         config.submit();
     }
