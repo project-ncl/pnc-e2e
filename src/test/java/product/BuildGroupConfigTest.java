@@ -4,6 +4,7 @@ import operators.configurations.BuildConfigurationPageOperator;
 import operators.configurations.BuildConfigurationSetPageOperator;
 import operators.projects.ProjectPageOperator;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ui.UITest;
@@ -246,6 +247,6 @@ public class BuildGroupConfigTest extends UITest {
 
         buildGroupConfig.buildBuildConfigurationSet();
         buildGroupConfig.menuBuildGroups();
-        assertLinkExists(buildName);
+        Assert.assertTrue(buildGroupConfig.waitUntilLink(buildName).isDisplayed());
     }
 }

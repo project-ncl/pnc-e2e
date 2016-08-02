@@ -70,4 +70,9 @@ public abstract class Operator {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[@id='input-name']")));
     }
+
+    public WebElement waitUntilLi() {
+        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("li")));
+    }
 }

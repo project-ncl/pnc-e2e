@@ -5,6 +5,7 @@ import operators.configurations.BuildConfigurationSetPageOperator;
 import operators.products.ProductPageOperator;
 import operators.projects.ProjectPageOperator;
 import operators.products.ImportPageOperator;
+import org.junit.Assert;
 import org.junit.Test;
 import ui.UITest;
 
@@ -18,7 +19,7 @@ public class ImportProductTest extends UITest {
 
         importConfig("jdg-infinispan", "8.3", "JDG Infinispan",
                 "http://git.app.eng.bos.redhat.com/infinispan/infinispan.git",
-                "JDG_7.0.0.ER9",
+                "JDG_7.0.0.CR1",
                 "mvn clean deploy -DskipTests -Pdistribution");
     }
 
@@ -27,12 +28,12 @@ public class ImportProductTest extends UITest {
 
         importConfig("jdg-management-console", "8.3", "JDG Management Console",
                 "http://git.app.eng.bos.redhat.com/infinispan/jdg-management-console.git",
-                "JDG_7.0.0.ER9_pnc_wa",
+                "JDG_7.0.0.CR1",
                 "export NVM_NODEJS_ORG_MIRROR=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node\n\n"
                 + "mvn clean deploy "
                 + "-DnpmDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/npm/ "
                 + "-DnodeDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/ "
-                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49159");
+                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49165");
     }
 
     @Test
@@ -66,7 +67,8 @@ public class ImportProductTest extends UITest {
         product.buildConfigurationSet();
 
         String buildName = product.getConfigSetName();
-        new BuildConfigurationSetPageOperator(buildName).menuBuildGroups();
-        assertLinkExists(buildName);
+        BuildConfigurationSetPageOperator buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
+        buildGroupConfig.menuBuildGroups();
+        Assert.assertTrue(buildGroupConfig.waitUntilLink(buildName).isDisplayed());
     }
 }

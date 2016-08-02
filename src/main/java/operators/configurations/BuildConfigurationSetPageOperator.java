@@ -23,7 +23,6 @@ public class BuildConfigurationSetPageOperator extends Operator {
     public void buildBuildConfigurationSet() {
 
         menuBuildGroupConfigs();
-        new RefreshOperator().refresh();
         new LinkOperator(name).clickLink();
         new BuildOperator().startBuild();
     }
@@ -42,18 +41,19 @@ public class BuildConfigurationSetPageOperator extends Operator {
 
         new LinkOperator(Elements.CONFIGURATION_LINK).clickLink();
         new LinkOperator(Elements.BUILD_CONFIGURATION_SET_LINK).clickLink();
+        new RefreshOperator().refresh();
     }
 
     public void menuBuildGroups() {
 
         new LinkOperator(Elements.BUILDS_LINK).clickLink();
         new LinkOperator(Elements.BUILD_CONFIGURATION_SET_RECORDS_LINK).clickLink();
+        new RefreshOperator().refresh();
     }
 
     public void createBuildGroupConfig() {
 
         menuBuildGroupConfigs();
-        new RefreshOperator().refresh();
         new ButtonOperator(Elements.CREATE_CONFIGURATION_SET_BUTTON).clickButton();
         new TextInputOperator(Elements.BUILD_CONFIGURATION_SET_INPUT).insertInput(name);
         new SubmitOperator().submit();
