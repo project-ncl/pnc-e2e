@@ -41,12 +41,13 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(consoleProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-management-console.git");
-        config.setScmRevision("JDG_7.0.0.ER4_pnc_wa__4");
+        // 8.3.0.ER4-redhat-1: JDG_7.0.0.ER4_pnc_wa__4 jboss-prod-docker.app.eng.bos.redhat.com:49162 
+        config.setScmRevision("JDG_7.0.0.ER9_pnc_wa");
         config.setBuildScript("export NVM_NODEJS_ORG_MIRROR=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node\n\n"
                 + "mvn clean deploy "
                 + "-DnpmDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/npm/ "
                 + "-DnodeDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/ "
-                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49162");
+                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49159");
         config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
         config.submit();
@@ -59,7 +60,8 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(infinispanProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/infinispan.git");
-        config.setScmRevision("JDG_7.0.0.ER4_pnc_wa_5");
+        // 8.3.0.ER4-redhat-1: JDG_7.0.0.ER4_pnc_wa_5
+        config.setScmRevision("JDG_7.0.0.ER9");
         config.setBuildScript("mvn clean deploy -DskipTests -Pdistribution");
         config.setDefaultConfigEnvironment();
         config.setDependencies(consoleName);
@@ -74,7 +76,8 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(sparkProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-spark.git");
-        config.setScmRevision("JDG_7.0.0.ER4");
+        // 8.3.0.ER4-redhat-1: JDG_7.0.0.ER4
+        config.setScmRevision("JDG_7.0.0.ER9");
         config.setBuildScript("mvn clean deploy -DskipTests");
         config.setDefaultConfigEnvironment();
         config.setDependencies(infinispanName);
@@ -89,7 +92,8 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(camelProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-camel.git");
-        config.setScmRevision("JDG_7.0.0.ER4_pnc_wa_1");
+        // 8.3.0.ER4-redhat-1: JDG_7.0.0.ER4_pnc_wa_1
+        config.setScmRevision("JDG_7.0.0.ER9");
         config.setBuildScript("mvn clean javadoc:javadoc deploy -DskipTests");
         config.setDefaultConfigEnvironment();
         config.setDependencies(infinispanName);
@@ -104,7 +108,8 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(packagingProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/jdg-packaging.git");
-        config.setScmRevision("JDG_7.0.0.ER4");
+        // 8.3.0.ER4-redhat-1: JDG_7.0.0.ER4
+        config.setScmRevision("JDG_7.0.0.ER9");
         config.setBuildScript("mvn clean deploy -DskipTests -Pdistribution");
         config.setDefaultConfigEnvironment();
         config.setDependencies(camelName);
@@ -119,7 +124,8 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(hadoopProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-hadoop.git");
-        config.setScmRevision("JDG_7.0.0.ER4");
+        // 8.3.0.ER4-redhat-1: JDG_7.0.0.ER4
+        config.setScmRevision("JDG_7.0.0.ER9");
         config.setBuildScript("mvn clean deploy -DskipTests");
         config.setDefaultConfigEnvironment();
         config.setDependencies(infinispanName);
@@ -134,7 +140,8 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(cassandraProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-cachestore-cassandra.git");
-        config.setScmRevision("JDG_7.0.0.ER4");
+        // 8.3.0.ER4-redhat-1: JDG_7.0.0.ER4
+        config.setScmRevision("JDG_7.0.0.ER9");
         config.setBuildScript("mvn clean deploy -DskipTests");
         config.setDefaultConfigEnvironment();
         config.setDependencies(infinispanName);
@@ -149,7 +156,8 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(archetypeProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-cachestore-archetype.git");
-        config.setScmRevision("JDG_7.0.0.ER4");
+        // 8.3.0.ER4-redhat-1: JDG_7.0.0.ER4
+        config.setScmRevision("JDG_7.0.0.ER9");
         config.setBuildScript("mvn clean deploy -DskipTests");
         config.setDefaultConfigEnvironment();
         config.setDependencies(infinispanName);
@@ -164,12 +172,13 @@ public class BuildGroupConfigTest extends UITest {
         config.createBuildConfig();
         config.setProject(jsClientProject);
         config.setScmUrl("http://git.app.eng.bos.redhat.com/infinispan/jdg-js-client.git");
-        config.setScmRevision("JDG_7.0.0.ER4");
+        // 8.3.0.ER4-redhat-1: JDG_7.0.0.ER4 jboss-prod-docker.app.eng.bos.redhat.com:49162
+        config.setScmRevision("JDG_7.0.0.ER9");
         config.setBuildScript("export NVM_NODEJS_ORG_MIRROR=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node\n\n"
                 + "mvn clean deploy "
                 + "-DnpmDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/npm/ "
                 + "-DnodeDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/ "
-                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49162");
+                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49159");
         config.setDefaultConfigEnvironment();
         config.setDependencies(infinispanName);
         config.setBuildConfigGroup(buildName);
