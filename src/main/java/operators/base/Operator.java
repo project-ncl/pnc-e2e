@@ -75,4 +75,9 @@ public abstract class Operator {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("li")));
     }
+
+    public WebElement waitUntilLiItem() {
+        WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li.dropdown-item")));
+    }
 }
