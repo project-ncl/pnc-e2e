@@ -335,14 +335,28 @@ public class BuildGroupConfigTest extends UITest {
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
 
+        // freemarker
+        String freemarkerProject = "freemarker";
+        new ProjectPageOperator(freemarkerProject).createProject("Liquidbase project");
+        String freemarkerName = "freemarker-2.3.23.redhat" + sufix;
+        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(freemarkerName);
+        config.createBuildConfig();
+        config.setProject(freemarkerProject);
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/freemarker.git");
+        config.setScmRevision("v2.3.23");
+        config.setBuildScript("mvn clean deploy -DskipTests");
+        config.setDefaultConfigEnvironment();
+        config.setBuildConfigGroup(buildName);
+        config.submit();
+
         // liquibase
         String liquibaseProject = "liquibase";
         new ProjectPageOperator(liquibaseProject).createProject("Liquidbase project");
         String liquibaseName = "liquibase-parent-3.4.1.redhat" + sufix;
-        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(liquibaseName);
+        config = new BuildConfigurationPageOperator(liquibaseName);
         config.createBuildConfig();
         config.setProject(liquibaseProject);
-        config.setScmUrl("https://github.com/liquibase/liquibase.git");
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/jboss-mobile/liquibase.git");
         config.setScmRevision("liquibase-parent-3.4.1");
         config.setBuildScript("mvn -P'!rpm' -pl '!liquibase-debian' clean deploy -DskipTests");
         config.setDefaultConfigEnvironment();
@@ -356,7 +370,7 @@ public class BuildGroupConfigTest extends UITest {
         config = new BuildConfigurationPageOperator(twitter4jName);
         config.createBuildConfig();
         config.setProject(twitter4jProject);
-        config.setScmUrl("https://github.com/yusuke/twitter4j.git");
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/twitter4j.git/");
         config.setScmRevision("4.0.4");
         config.setBuildScript("mvn clean deploy -DskipTests");
         config.setDefaultConfigEnvironment();
@@ -370,7 +384,7 @@ public class BuildGroupConfigTest extends UITest {
         config = new BuildConfigurationPageOperator(zxingName);
         config.createBuildConfig();
         config.setProject(zxingProject);
-        config.setScmUrl("https://github.com/zxing/zxing.git");
+        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/zxing.git");
         config.setScmRevision("zxing-3.2.1");
         config.setBuildScript("mvn clean deploy -DskipTests -Drat.numUnapprovedLicenses=2");
         config.setDefaultConfigEnvironment();
@@ -388,7 +402,7 @@ public class BuildGroupConfigTest extends UITest {
         config.setScmRevision("1.9.0.Final-redhat-1-pnc");
         config.setBuildScript("mvn clean deploy -Pdistribution");
         config.setDefaultConfigEnvironment();
-        config.setDependencies(liquibaseName, twitter4jName, zxingName);
+        config.setDependencies(freemarkerName, liquibaseName, twitter4jName, zxingName);
         config.setBuildConfigGroup(buildName);
         config.submit();
     }
