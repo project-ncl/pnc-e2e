@@ -24,15 +24,6 @@ public class ImportProductTest extends UITest {
     }
 
     @Test
-    public void jdgER9() {
-
-        importConfig("jdg-infinispan", "8.3", "JDG Infinispan",
-                "http://git.app.eng.bos.redhat.com/infinispan/infinispan.git",
-                "JDG_7.0.0.ER9",
-                "mvn clean deploy -DskipTests=true -Pdistribution");
-    }
-
-    @Test
     public void sso() {
 
         importConfig("keycloak", "2.0", "RH SSO",
