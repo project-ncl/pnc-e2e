@@ -28,13 +28,8 @@ public class BuildGroupConfigTest extends UITest {
     @Test
     public void jdg() {
 
-        jdgGroupConfig("JDG_7.0.0.ER9", "JDG_7.0.0.ER9_pnc_wa", "JDG_7.0.0.ER9");
-    }
-
-    @Test
-    public void jdgER4() {
-
-        jdgGroupConfig("JDG_7.0.0.ER4", "JDG_7.0.0.ER4_pnc_wa", "JDG_7.0.0.ER4_pnc_wa_1");
+        jdgGroupConfig("JDG_7.0.0.GA", "JDG_7.0.0.GA_pnc_wa", "JDG_7.0.0.ER9");
+        //jdgGroupConfig("JDG_7.0.0.ER4", "JDG_7.0.0.ER4_pnc_wa", "JDG_7.0.0.ER4_pnc_wa_1");
     }
 
     private void jdgGroupConfig(String... param) {
