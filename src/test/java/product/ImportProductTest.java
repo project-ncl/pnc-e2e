@@ -19,12 +19,33 @@ public class ImportProductTest extends UITest {
 
         importConfig("jdg-infinispan", "8.3", "JDG Infinispan",
                 "http://git.app.eng.bos.redhat.com/infinispan/infinispan.git",
-                "JDG_7.0.0.ER4_pnc_wa",
+                "JDG_7.0.0.GA",
                 "mvn clean deploy -DskipTests=true -Pdistribution");
     }
 
     @Test
     public void jdgConsole() {
+
+        importConfig("jdg-management-console", "8.3", "JDG Management Console",
+                "http://git.engineering.redhat.com/git/users/pkralik/jdg-management-console.git",
+                "JDG_7.0.0.GA_pnc_wa",
+                "export NVM_NODEJS_ORG_MIRROR=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node\n\n"
+                + "mvn clean deploy "
+                + "-DnpmDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/npm/ "
+                + "-DnodeDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/ "
+                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49155");
+    }
+
+    public void jdgER4() {
+
+        importConfig("jdg-infinispan", "8.3", "JDG Infinispan",
+                "http://git.app.eng.bos.redhat.com/infinispan/infinispan.git",
+                "JDG_7.0.0.ER4_pnc_wa",
+                "mvn clean deploy -DskipTests=true -Pdistribution");
+    }
+
+    @Test
+    public void jdgConsoleER4() {
 
         importConfig("jdg-management-console", "8.3", "JDG Management Console",
                 "http://git.app.eng.bos.redhat.com/git/infinispan/jdg-management-console.git",
@@ -34,6 +55,15 @@ public class ImportProductTest extends UITest {
                 + "-DnpmDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/npm/ "
                 + "-DnodeDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/ "
                 + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49155");
+    }
+
+    @Test
+    public void sso70() {
+
+        importConfig("keycloak", "7.0", "RH SSO",
+                "http://git.engineering.redhat.com/git/users/pkralik/keycloak-prod.git",
+                "1.9.0.Final-redhat-1-pnc",
+                "mvn clean deploy -Pdistribution");
     }
 
     @Test
