@@ -26,7 +26,7 @@ public class BuildGroupConfigTest extends UITest {
     }
 
     @Test
-    private void jdg() {
+    public void jdg() {
 
         // Build Group Config
         buildName = "jdg" + sufix;
