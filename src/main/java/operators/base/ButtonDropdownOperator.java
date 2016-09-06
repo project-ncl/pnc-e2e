@@ -21,7 +21,9 @@ public class ButtonDropdownOperator extends Operator {
         String selectXpath = String.format(XPATH_SELECT, name);
         WebElement element = getElementByXpath(selectXpath);
         element.findElement(By.tagName("button")).click();
-        element.findElement(By.linkText(value)).click();
+        // Timeout issue waiting for dropdown button content.
+        waitUntilLink(value).click();
+        //element.findElement(By.linkText(value)).click();
     }
 
     public void clickFirst() {
