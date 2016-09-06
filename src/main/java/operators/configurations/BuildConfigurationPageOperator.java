@@ -59,7 +59,7 @@ public class BuildConfigurationPageOperator extends Operator {
 
     public void setProject(String projectName) {
 
-        new TextInputDropdownOperator(Elements.BUILD_CONFIGURATION_PROJECT_SELECT).clickSelect(projectName);
+        new TextInputDropdownOperator(Elements.BUILD_CONFIGURATION_PROJECT_SELECT).clickSelectProject(projectName);
     }
 
     public void setScmUrl(String scmUrl) {
@@ -91,7 +91,7 @@ public class BuildConfigurationPageOperator extends Operator {
 
     public void setDefaultConfigEnvironment() {
 
-        setConfigEnvironment("Demo");
+        new TextInputDropdownOperator(Elements.BUILD_CONFIGURATION_ENVIRONMENT).clickLast();
     }
 
     public void setLastConfigEnvironment() {
