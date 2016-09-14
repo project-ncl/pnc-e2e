@@ -15,23 +15,15 @@ public class TextInputDropdownOperator extends Operator {
         super(ngModel);
     }
 
-    public void clickSelectProject(String value) {
-        String selectXpath = String.format(XPATH_SELECT, name);
-        WebElement element = getElementByXpath(selectXpath);
-        element.findElement(By.name(name)).sendKeys(value);
-        try {
-            Thread.sleep(3000);
-        } catch (Exception e) {
-        }
-        element.findElements(By.tagName("li")).get(0).click();
-        //waitUntilLiItem().click();
-    }
-
     public void clickSelect(String value) {
         String selectXpath = String.format(XPATH_SELECT, name);
         WebElement element = getElementByXpath(selectXpath);
         element.findElement(By.name(name)).sendKeys(value);
-        waitUntilLi();
+        //waitUntilLi();
+        try {
+            Thread.sleep(3000);
+        } catch (Exception e) {
+        }
         element.findElements(By.tagName("li")).get(0).click();
     }
 

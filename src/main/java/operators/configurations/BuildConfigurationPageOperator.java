@@ -59,7 +59,7 @@ public class BuildConfigurationPageOperator extends Operator {
 
     public void setProject(String projectName) {
 
-        new TextInputDropdownOperator(Elements.BUILD_CONFIGURATION_PROJECT_SELECT).clickSelectProject(projectName);
+        new TextInputDropdownOperator(Elements.BUILD_CONFIGURATION_PROJECT_SELECT).clickSelect(projectName);
     }
 
     public void setScmUrl(String scmUrl) {
