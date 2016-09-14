@@ -19,7 +19,12 @@ public class TextInputDropdownOperator extends Operator {
         String selectXpath = String.format(XPATH_SELECT, name);
         WebElement element = getElementByXpath(selectXpath);
         element.findElement(By.name(name)).sendKeys(value);
-        waitUntilLiItem().click();
+        try {
+            Thread.sleep(3000);
+        } catch (Exception e) {
+        }
+        element.findElements(By.tagName("li")).get(0).click();
+        //waitUntilLiItem().click();
     }
 
     public void clickSelect(String value) {

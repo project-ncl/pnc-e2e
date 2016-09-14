@@ -37,12 +37,12 @@ public class Elements {
 
     public static final String CONFIGURATION_LINK = "Build Configs";
     public static final String BUILD_CONFIGURATION_LINK = "Build Configs";
-    public static final String CREATE_CONFIGURATION_BUTTON = "Create Build Config";
+    public static final String CREATE_CONFIGURATION_BUTTON = "Create a new build configuration";
     public static final String BUILD_CONFIGURATION_PROJECT_SELECT = "projectId";
     public static final String BUILD_CONFIGURATION_INPUT = "name";
     public static final String BUILD_CONFIGURATION_DESCRIPTION = "description";
-    public static final String BUILD_CONFIGURATION_SCM_URL = "scmRepoURL";
-    public static final String BUILD_CONFIGURATION_SCM_REVISION = "scmRevision";
+    public static final String BUILD_CONFIGURATION_SCM_URL = "scmRepoURLExternal";
+    public static final String BUILD_CONFIGURATION_SCM_REVISION = "scmRevisionExternal";
     public static final String BUILD_CONFIGURATION_BUILD_SCRIPT = "buildScript";
     public static final String BUILD_CONFIGURATION_PRODUCT = "createCtrl.products.selected";
     public static final String BUILD_CONFIGURATION_ENVIRONMENT ="environmentId";

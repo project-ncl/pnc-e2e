@@ -12,7 +12,7 @@ public class ButtonOperator extends Operator {
     }
 
     public void clickButton() {
-        String buttonXpath = String.format("//button[@title='%s']", name);
+        String buttonXpath = String.format("//button[@title='%s' or @tooltip='%s']", name, name);
         WebElement element = getElementByXpath(buttonXpath);
         element.click();
     }
