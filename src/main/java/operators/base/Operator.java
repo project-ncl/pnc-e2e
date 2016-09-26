@@ -66,9 +66,9 @@ public abstract class Operator {
         return wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(link)));
     }
 
-    public WebElement waitUntilName(String name) {
+    public WebElement waitUntilName(String section) {
         WebDriverWait wait = new WebDriverWait(driver, TIMEOUT);
-        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[@id='input-name']")));
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("//span[contains(text(), '%s')]", section))));
     }
 
     public WebElement waitUntilLi() {
