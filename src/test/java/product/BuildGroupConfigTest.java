@@ -29,7 +29,7 @@ public class BuildGroupConfigTest extends UITest {
     public void jdg() {
 
         // Build Group Config
-        buildName = "jdg" + sufix;
+        buildName = "jdg-8.3.0.ER4-redhat-1" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
 
@@ -180,7 +180,7 @@ public class BuildGroupConfigTest extends UITest {
     public void sso() {
 
         // Build Group Config
-        buildName = "keycloak" + sufix;
+        buildName = "keycloak-1.9.0.Final-redhat-1" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
 
@@ -260,7 +260,7 @@ public class BuildGroupConfigTest extends UITest {
     public void jdgGroup() {
 
         // Build Group Config
-        buildName = "jdg" + sufix;
+        buildName = "jdg-8.3.0.Final-redhat-1" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
 
@@ -287,7 +287,7 @@ public class BuildGroupConfigTest extends UITest {
     public void ssoGroup() {
 
         // Build Group Config
-        buildName = "keycloak" + sufix;
+        buildName = "keycloak-2.2.0.Final-redhat-1" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
 
