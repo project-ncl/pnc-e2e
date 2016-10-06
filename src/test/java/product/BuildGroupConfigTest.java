@@ -6,6 +6,7 @@ import operators.projects.ProjectPageOperator;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import ui.UITest;
 import util.RandomName;
@@ -25,6 +26,7 @@ public class BuildGroupConfigTest extends UITest {
         sufix = RandomName.getSufix();
     }
 
+    @Ignore
     @Test
     public void jdg() {
 
@@ -176,6 +178,7 @@ public class BuildGroupConfigTest extends UITest {
         config.submit();
     }
 
+    @Ignore
     @Test
     public void sso() {
 
@@ -260,19 +263,19 @@ public class BuildGroupConfigTest extends UITest {
     public void jdgGroup() {
 
         // Build Group Config
-        buildName = "jdg-8.3.0.Final-redhat-1" + sufix;
+        buildName = "org.infinispan-infinispan-management-console-8.3.0.Final-redhat-1" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
 
         // jdg-management-console
         String consoleProject = "jdg-management-console";
         new ProjectPageOperator(consoleProject).createProject("JDG Management Console");
-        String consoleName = "jdg-management-console-8.3.0.Final-redhat-1" + sufix;
+        String consoleName = "org.infinispan-infinispan-management-console-8.3.0.Final-redhat-1" + sufix;
         BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(consoleName);
         config.createBuildConfig();
         config.setProject(consoleProject);
-        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/infinispan/jdg-management-console.git");
-        config.setScmRevision("JDG_7.0.0.GA-pnc");
+        config.setScmUrl("git+ssh://user-pnc-gerrit@pnc-gerrit.pnc.dev.eng.bos.redhat.com:29418/pnc/org.infinispan-infinispan-management-console-8.3.0.Final-redhat-1.git");
+        config.setScmRevision("branch-JDG_7.0.0.GA-pnc");
         config.setBuildScript("export NVM_NODEJS_ORG_MIRROR=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node\n\n"
                 + "mvn clean deploy "
                 + "-DnpmDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/npm/ "
@@ -287,19 +290,19 @@ public class BuildGroupConfigTest extends UITest {
     public void ssoGroup() {
 
         // Build Group Config
-        buildName = "keycloak-2.2.0.Final-redhat-1" + sufix;
+        buildName = "org.keycloak-keycloak-parent-2.2.0.Final-redhat-1" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
 
         // Keycloak
         String keycloakProject = "keycloak";
         new ProjectPageOperator(keycloakProject).createProject("Keycloak project");
-        String keycloakName = "keycloak-parent-2.2.0.Final-redhat-1" + sufix;
+        String keycloakName = "org.keycloak-keycloak-parent-2.2.0.Final-redhat-1" + sufix;
         BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(keycloakName);
         config.createBuildConfig();
         config.setProject(keycloakProject);
-        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/keycloak-prod.git");
-        config.setScmRevision("2.2.0.Final-redhat-1-pnc");
+        config.setScmUrl("git+ssh://user-pnc-gerrit@pnc-gerrit.pnc.dev.eng.bos.redhat.com:29418/pnc/org.keycloak-keycloak-parent-2.2.0.Final-redhat-1.git");
+        config.setScmRevision("branch-2.2.0.Final-redhat-1-pnc");
         config.setBuildScript("mvn clean deploy -Pdistribution -pl '!adapters/oidc/jetty/jetty9.1' -pl '!adapters/oidc/jetty/jetty9.3' -pl '!adapters/oidc/spring-boot' -pl '!adapters/oidc/spring-security' -pl '!adapters/oidc/tomcat/tomcat6' -pl '!adapters/oidc/tomcat/tomcat7' -pl '!adapters/oidc/tomcat/tomcat8' -pl '!adapters/oidc/wildfly/wf8-subsystem' -pl '!adapters/saml/jetty/jetty-core' -pl '!adapters/saml/jetty/jetty8.1' -pl '!adapters/saml/jetty/jetty9.1' -pl '!adapters/saml/jetty/jetty9.2' -pl '!adapters/saml/jetty/jetty9.3' -pl '!adapters/saml/tomcat/tomcat6' -pl '!adapters/saml/tomcat/tomcat7' -pl '!adapters/saml/tomcat/tomcat8' -pl '!distribution/adapters/as7-eap6-adapter/as7-adapter-zip' -pl '!distribution/adapters/tomcat6-adapter-zip' -pl '!distribution/adapters/tomcat7-adapter-zip' -pl '!distribution/adapters/tomcat8-adapter-zip' -pl '!distribution/adapters/jetty81-adapter-zip' -pl '!distribution/adapters/jetty91-adapter-zip' -pl '!distribution/adapters/jetty92-adapter-zip' -pl '!distribution/adapters/jetty93-adapter-zip' -pl '!distribution/adapters/wf8-adapter/wf8-adapter-zip' -pl '!distribution/adapters/wf8-adapter/wf8-modules' -pl '!distribution/api-docs-dist' -pl '!distribution/feature-packs/adapter-feature-pack' -pl '!distribution/demo-dist' -pl '!distribution/examples-dist' -pl '!distribution/proxy-dist' -pl '!distribution/saml-adapters/as7-eap6-adapter/as7-adapter-zip' -pl '!distribution/saml-adapters/tomcat6-adapter-zip' -pl '!distribution/saml-adapters/tomcat7-adapter-zip' -pl '!distribution/saml-adapters/tomcat8-adapter-zip' -pl '!distribution/saml-adapters/jetty81-adapter-zip' -pl '!distribution/saml-adapters/jetty92-adapter-zip' -pl '!distribution/saml-adapters/jetty93-adapter-zip' -pl '!distribution/src-dist' -pl '!model/mongo' -pl '!proxy/proxy-server' -pl '!proxy/launcher/' -pl '!testsuite/proxy' -pl '!testsuite/tomcat6' -pl '!testsuite/tomcat7' -pl '!testsuite/tomcat8' -pl '!testsuite/jetty/jetty81' -pl '!testsuite/jetty/jetty91' -pl '!testsuite/jetty/jetty92' -pl '!testsuite/jetty/jetty93'");
         config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
