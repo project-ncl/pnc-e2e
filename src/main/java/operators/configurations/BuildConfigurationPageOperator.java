@@ -107,6 +107,11 @@ public class BuildConfigurationPageOperator extends Operator {
     public void submit() {
 
         new SubmitOperator().submit();
-        waitUntilName("Build Configs");
+        try {
+            Thread.sleep(60000);
+        } catch (Exception e) {
+        }
+        new RefreshOperator().refresh();
+        waitUntilLink(name);
     }
 }
