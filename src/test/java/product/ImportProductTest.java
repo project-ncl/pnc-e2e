@@ -24,19 +24,6 @@ public class ImportProductTest extends UITest {
     }
 
     @Test
-    public void jdgConsole() {
-
-        importConfig("jdg-management-console", "8.3", "JDG Management Console",
-                "http://git.app.eng.bos.redhat.com/git/infinispan/jdg-management-console.git",
-                "JDG_7.0.0.GA-pnc",
-                "export NVM_NODEJS_ORG_MIRROR=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node\n\n"
-                + "mvn clean deploy "
-                + "-DnpmDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/npm/ "
-                + "-DnodeDownloadRoot=http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/jboss-dg/node/ "
-                + "-DnpmRegistryURL=http://jboss-prod-docker.app.eng.bos.redhat.com:49165");
-    }
-
-    @Test
     public void sso() {
 
         importConfig("keycloak", "7.1", "RH SSO",
