@@ -6,6 +6,7 @@ import operators.products.ProductPageOperator;
 import operators.projects.ProjectPageOperator;
 import operators.products.ImportPageOperator;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import ui.UITest;
 
@@ -14,6 +15,7 @@ import ui.UITest;
  */
 public class ImportProductTest extends UITest {
 
+    @Ignore
     @Test
     public void jdg() {
 

@@ -64,12 +64,12 @@ public class BuildConfigurationPageOperator extends Operator {
 
     public void setScmUrl(String scmUrl) {
 
-        new TextInputOperator(Elements.BUILD_CONFIGURATION_SCM_URL_EXTERNAL).insertInput(scmUrl);
+        new TextInputOperator(Elements.BUILD_CONFIGURATION_SCM_URL).insertInput(scmUrl);
     }
 
     public void setScmRevision(String scmRevision) {
 
-        new TextInputOperator(Elements.BUILD_CONFIGURATION_SCM_REVISION_EXTERNAL).insertInput(scmRevision);
+        new TextInputOperator(Elements.BUILD_CONFIGURATION_SCM_REVISION).insertInput(scmRevision);
     }
 
     public void setBuildScript(String buildScript) {
