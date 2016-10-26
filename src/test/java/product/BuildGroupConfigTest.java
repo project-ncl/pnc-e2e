@@ -6,7 +6,6 @@ import operators.projects.ProjectPageOperator;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import ui.UITest;
 import util.RandomName;
@@ -26,12 +25,11 @@ public class BuildGroupConfigTest extends UITest {
         sufix = RandomName.getSufix();
     }
 
-    @Ignore
     @Test
     public void jdg() {
 
         // Build Group Config
-        buildName = "jdg-8.3.0.ER4-redhat-1" + sufix;
+        buildName = "jb-dg-7-rhel-7-candidate" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
 
@@ -182,28 +180,29 @@ public class BuildGroupConfigTest extends UITest {
     public void sso() {
 
         // Build Group Config
-        buildName = "org.keycloak-keycloak-parent-1.9.0.Final" + sufix;
+        buildName = "sso-7.0-candidate" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
 
         // freemarker
-        /*String freemarkerProject = "freemarker";
+        String freemarkerProject = "freemarker";
         new ProjectPageOperator(freemarkerProject).createProject("Liquidbase project");
-        String freemarkerName = "freemarker-2.3.23.redhat" + sufix;
+        String freemarkerName = "freemarker-2.3.23" + sufix;
         BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(freemarkerName);
         config.createBuildConfig();
         config.setProject(freemarkerProject);
-        config.setScmUrl("http://git.app.eng.bos.redhat.com/git/freemarker.git");
-        config.setScmRevision("v2.3.23");
+        config.setScmUrl("git+ssh://user-pnc-gerrit@pnc-gerrit.pnc.dev.eng.bos.redhat.com:29418/pnc/freemarker-2.3.23.redhat.git");
+        config.setScmRevision("branch-v2.3.23");
         config.setBuildScript("mvn clean deploy -DskipTests");
         config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
-        config.submit();*/
+        config.submit();
+
         // liquibase
         String liquibaseProject = "liquibase";
         new ProjectPageOperator(liquibaseProject).createProject("Liquidbase project");
         String liquibaseName = "org.liquibase-liquibase-parent-3.4.1" + sufix;
-        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(liquibaseName);
+        config = new BuildConfigurationPageOperator(liquibaseName);
         config.createBuildConfig();
         config.setProject(liquibaseProject);
         config.setScmUrl("git+ssh://user-pnc-gerrit@pnc-gerrit.pnc.dev.eng.bos.redhat.com:29418/pnc/liquibase-parent-3.4.1.redhat.git");
