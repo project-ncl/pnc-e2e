@@ -25,7 +25,6 @@ public class BuildGroupConfigTest extends UITest {
         sufix = RandomName.getSufix();
     }
 
-    @Test
     public void jdg() {
 
         // Build Group Config
@@ -180,34 +179,20 @@ public class BuildGroupConfigTest extends UITest {
     public void sso() {
 
         // Build Group Config
-        buildName = "sso-7.0-candidate" + sufix;
+        buildName = "sso-7.1-candidate" + sufix;
         buildGroupConfig = new BuildConfigurationSetPageOperator(buildName);
         buildGroupConfig.createBuildGroupConfig();
-
-        // freemarker
-        String freemarkerProject = "freemarker";
-        new ProjectPageOperator(freemarkerProject).createProject("Liquidbase project");
-        String freemarkerName = "freemarker-2.3.23" + sufix;
-        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(freemarkerName);
-        config.createBuildConfig();
-        config.setProject(freemarkerProject);
-        config.setScmUrl("git+ssh://user-pnc-gerrit@pnc-gerrit.pnc.dev.eng.bos.redhat.com:29418/pnc/freemarker-2.3.23.redhat.git");
-        config.setScmRevision("branch-v2.3.23");
-        config.setBuildScript("mvn clean deploy -DskipTests");
-        config.setDefaultConfigEnvironment();
-        config.setBuildConfigGroup(buildName);
-        config.submit();
 
         // liquibase
         String liquibaseProject = "liquibase";
         new ProjectPageOperator(liquibaseProject).createProject("Liquidbase project");
         String liquibaseName = "org.liquibase-liquibase-parent-3.4.1" + sufix;
-        config = new BuildConfigurationPageOperator(liquibaseName);
+        BuildConfigurationPageOperator config = new BuildConfigurationPageOperator(liquibaseName);
         config.createBuildConfig();
         config.setProject(liquibaseProject);
         config.setScmUrl("git+ssh://user-pnc-gerrit@pnc-gerrit.pnc.dev.eng.bos.redhat.com:29418/pnc/liquibase-parent-3.4.1.redhat.git");
         config.setScmRevision("branch-liquibase-parent-3.4.1");
-        config.setBuildScript("mvn -P'!rpm' -pl '!liquibase-debian' clean deploy -DskipTests");
+        config.setBuildScript("mvn clean deploy -DskipTests -P'!rpm' -pl '!liquibase-debian'");
         config.setDefaultConfigEnvironment();
         config.setBuildConfigGroup(buildName);
         config.submit();
@@ -243,13 +228,13 @@ public class BuildGroupConfigTest extends UITest {
         // Keycloak
         String keycloakProject = "keycloak";
         new ProjectPageOperator(keycloakProject).createProject("Keycloak project");
-        String keycloakName = "org.keycloak-keycloak-parent-1.9.0.Final-redhat-1" + sufix;
+        String keycloakName = "org.keycloak-keycloak-parent-2.2.1.Final" + sufix;
         config = new BuildConfigurationPageOperator(keycloakName);
         config.createBuildConfig();
         config.setProject(keycloakProject);
-        config.setScmUrl("git+ssh://user-pnc-gerrit@pnc-gerrit.pnc.dev.eng.bos.redhat.com:29418/pnc/org.keycloak-keycloak-parent-1.9.0.Final.git");
-        config.setScmRevision("branch-1.9.0.Final-redhat-1-pnc-da");
-        config.setBuildScript("mvn clean deploy -Pdistribution");
+        config.setScmUrl("git+ssh://user-pnc-gerrit@pnc-gerrit.pnc.dev.eng.bos.redhat.com:29418/pnc/org.keycloak-keycloak-parent-2.2.1.Final-redhat-1-da.git");
+        config.setScmRevision("branch-2.2.1.Final-redhat-1-pnc-da");
+        config.setBuildScript("mvn clean deploy -DskipTests=true -Pdistribution -pl '!adapters/oidc/jetty/jetty9.1' -pl '!adapters/oidc/jetty/jetty9.3' -pl '!adapters/oidc/spring-boot' -pl '!adapters/oidc/spring-security' -pl '!adapters/oidc/tomcat/tomcat6' -pl '!adapters/oidc/tomcat/tomcat7' -pl '!adapters/oidc/tomcat/tomcat8' -pl '!adapters/oidc/wildfly/wf8-subsystem' -pl '!adapters/saml/jetty/jetty-core' -pl '!adapters/saml/jetty/jetty8.1' -pl '!adapters/saml/jetty/jetty9.1' -pl '!adapters/saml/jetty/jetty9.2' -pl '!adapters/saml/jetty/jetty9.3' -pl '!adapters/saml/tomcat/tomcat6' -pl '!adapters/saml/tomcat/tomcat7' -pl '!adapters/saml/tomcat/tomcat8' -pl '!distribution/adapters/as7-eap6-adapter/as7-adapter-zip' -pl '!distribution/adapters/tomcat6-adapter-zip' -pl '!distribution/adapters/tomcat7-adapter-zip' -pl '!distribution/adapters/tomcat8-adapter-zip' -pl '!distribution/adapters/jetty81-adapter-zip' -pl '!distribution/adapters/jetty91-adapter-zip' -pl '!distribution/adapters/jetty92-adapter-zip' -pl '!distribution/adapters/jetty93-adapter-zip' -pl '!distribution/adapters/wf8-adapter/wf8-adapter-zip' -pl '!distribution/adapters/wf8-adapter/wf8-modules' -pl '!distribution/api-docs-dist' -pl '!distribution/feature-packs/adapter-feature-pack' -pl '!distribution/demo-dist' -pl '!distribution/examples-dist' -pl '!distribution/proxy-dist' -pl '!distribution/saml-adapters/as7-eap6-adapter/as7-adapter-zip' -pl '!distribution/saml-adapters/tomcat6-adapter-zip' -pl '!distribution/saml-adapters/tomcat7-adapter-zip' -pl '!distribution/saml-adapters/tomcat8-adapter-zip' -pl '!distribution/saml-adapters/jetty81-adapter-zip' -pl '!distribution/saml-adapters/jetty92-adapter-zip' -pl '!distribution/saml-adapters/jetty93-adapter-zip' -pl '!distribution/src-dist' -pl '!model/mongo' -pl '!proxy/proxy-server' -pl '!proxy/launcher/' -pl '!testsuite/proxy' -pl '!testsuite/tomcat6' -pl '!testsuite/tomcat7' -pl '!testsuite/tomcat8' -pl '!testsuite/jetty/jetty81' -pl '!testsuite/jetty/jetty91' -pl '!testsuite/jetty/jetty92' -pl '!testsuite/jetty/jetty93'");
         config.setDefaultConfigEnvironment();
         config.setDependencies(liquibaseName, twitter4jName, zxingName);
         config.setBuildConfigGroup(buildName);

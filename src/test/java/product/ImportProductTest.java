@@ -23,7 +23,6 @@ public class ImportProductTest extends UITest {
                 "mvn clean deploy -DskipTests=true -Pdistribution");
     }
 
-    @Test
     public void sso() {
 
         importConfig("keycloak", "7.1", "RH SSO",
